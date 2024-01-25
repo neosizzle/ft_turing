@@ -1,1 +1,1 @@
-let () = Parser.hello()
+let () = Lexxer.tokenize_input()
