@@ -42,3 +42,11 @@ type machine_definition = {
 	transition_table : state_transitions array;
 	current_state : state_index;
 }
+
+(* Represents the machine's tape / input / memory *)
+type tape = {
+	blank: char;
+	data: string;
+	head: int;
+	size: int;
+}

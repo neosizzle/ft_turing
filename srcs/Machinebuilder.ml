@@ -78,4 +78,5 @@ let build configuration =
     transition_table = transition_table;
     current_state = _get_index configuration.stateslst configuration.initial
   } in 
-  Utils.print_machine_definition machine 
+  Utils.print_machine_definition machine ;
+  machine
