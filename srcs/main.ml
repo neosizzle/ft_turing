@@ -1,1 +1,2 @@
-let () = Lexxer.tokenize_input()
+
+let () = Machinebuilder.build(Lexxer.tokenize_input()) 

@@ -1,11 +1,11 @@
 NAME = ft_turing
 
 # Order matters, no way to escape the interperter :()
-SRCS = srcs/Types.ml srcs/Utils.ml srcs/Lexxer.ml srcs/main.ml
+SRCS = srcs/Types.ml srcs/Utils.ml srcs/Lexxer.ml srcs/Machinebuilder.ml srcs/main.ml
 SRCS_OBJS_NATIVE = $(SRCS:.ml=.cmx)
 SRCS_OBJS_INTERP = $(SRCS:.ml=.cmo)
 
-INTERFACES = srcs/Lexxer.mli
+INTERFACES = 
 INTERFACES_OBJS = $(INTERFACES:.mli=.cmi)
 
 PKGFLAGS = -package yojson,spectrum,core

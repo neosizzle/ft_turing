@@ -24,7 +24,7 @@ let _tokenize_blank jsonobj alphabet =
   (*
     Make sure blank is just 1 character and does not collide with alphabet
   *)
-  if String.length inputstr != 0 then begin
+  if String.length inputstr != 1 then begin
     Spectrum.Simple.printf "@{<red>[ERROR]@} Usage: ./ft_turing Blank needs to have at exactly 1 alphabet\n"; exit (-1)
   end else if not (CharSet.mem blank alphabet) then begin
     Spectrum.Simple.printf "@{<red>[ERROR]@} Usage: ./ft_turing Blank must be part of alphabet\n"; exit (-1)
@@ -80,7 +80,7 @@ let _verify_transitions transitions_assoc states finals =
   let transition_names = StringSet.of_list members in 
   let compared_set = StringSet.diff states finals in
   if not (StringSet.equal compared_set transition_names) then begin 
-    Spectrum.Simple.printf "@{<red>[ERROR]@} Usage: ./ft_turing transition names must be states except finals\n"; exit (-1)
+    Spectrum.Simple.printf "@{<red>[ERROR]@} Usage: ./ft_turing ALL transition names must be states except finals\n"; exit (-1)
   end else if Core.List.contains_dup members  ~compare:String.compare then begin
     Spectrum.Simple.printf "@{<red>[ERROR]@} Usage: ./ft_turing transitions must be unique\n"; exit (-1)
   end
@@ -94,8 +94,7 @@ let _tokenize_transitions json states finals=
 let tokenize_input () =
   (* Check argv *)
   if (Array.length Sys.argv) != 3 then
-    Spectrum.Simple.printf "@{<red>%s@} Usage: ./ft_turing <path_to_machine> <input>\n" "[ERROR]"
-
+    (Spectrum.Simple.printf "@{<red>%s@} Usage: ./ft_turing <path_to_machine> <input>\n" "[ERROR]"; exit(-1))
   else  
     (*
       Read file of machine definition
@@ -140,6 +139,11 @@ let tokenize_input () =
     let initial = _tokenize_initial json states in 
     let finals = _tokenize_finals json states initial in
     let transitions = _tokenize_transitions json states finals in
+
+
+    (*
+      Construct the machine struct
+    *)
     let data = {
       name = name;
       alphabet = symbols;
@@ -149,7 +153,4 @@ let tokenize_input () =
       initial = initial;
       finals = finals;
       transitions = transitions
-    } in 
-
-    (* Format.printf "All good %s" (fst assoc.0) *)
-    List.iter (fun (str, typ) -> Format.printf "%s\n" str) assoc
+    } in data 
