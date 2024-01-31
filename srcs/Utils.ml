@@ -15,6 +15,30 @@ let is_char str = String.length str = 1
 *)
 let str_equal s1 s2 = String.compare s1 s2 = 0
 
+(*
+  First n characters
+*)
+let first_n_chars n str = 
+  String.sub str 0 n
+   
+(*
+  Last n characters
+*)
+let last_n_chars n str = 
+  String.sub str ((String.length str) - n) n
+
+(*
+  Replace a character with _chr of str at index n
+*)
+let replace_char n str _char = 
+  if n < 0 then begin
+    Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: replace_char: negative index\n" ; exit (-1)
+  end else if n > String.length str then begin
+    Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: replace_char: index too big\n" ; exit (-1)
+  end;
+  let first_half = first_n_chars n str in
+  let sec_half = last_n_chars ((String.length str) - n - 1) str in
+  first_half ^ _char ^ sec_half
 
 (*
   Confirm that curr_members have at least all members in required_members
