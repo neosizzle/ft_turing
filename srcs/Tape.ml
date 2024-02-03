@@ -1,7 +1,15 @@
 open Types
 
-(* TODO - VALIDATE INPUT *)
+(* Create a tape struct based on machine definition and input *)
 let create (machine_definition:Types.machine_definition) input = 
+  String.iter (
+    fun (curr_char) ->
+      if not (CharSet.mem curr_char machine_definition.alphabet) then begin
+        if curr_char != machine_definition.blank then begin
+          Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: Tape::create: %c is an invalid input\n" curr_char; exit (-1)
+        end
+      end
+  ) input;
   {
     blank = machine_definition.blank;
     data = input;

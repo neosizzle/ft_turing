@@ -34,7 +34,7 @@ let _extract_transition_and_push index transition_array (configuration: machine_
   end else if not (CharSet.mem (String.get write 0) configuration.alphabet) then begin
     Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: write value must be a part of the alphabet\n"; exit(-1)
   end else if not (StringSet.mem to_state configuration.states) then begin
-    (Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: [%s] must be part of states\n", to_state); exit(-1);
+    (Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: [%s] must be part of states\n" to_state); exit(-1);
   end else if (not (Utils.str_equal action "LEFT")) && (not (Utils.str_equal action "RIGHT")) then begin
     Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: action must be LEFT or RIGHT\n"; exit(-1)
   end ; 

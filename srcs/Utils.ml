@@ -84,7 +84,7 @@ let json_to_associate ?(name = "") json =
   Prints a machine definition
 *)
 let print_machine_definition machine = 
-  Spectrum.Simple.printf "@{<green>@{<bold>===============@}@} %s @{<green>@{<bold>===============@}@\n" machine.name ;
+  Spectrum.Simple.printf "@{<green>@{<bold>===============@}@} @{<aqua>%s@} @{<green>@{<bold>===============@}@}\n" machine.name ;
   Spectrum.Simple.printf "@{<green> Blank: @} %c\n" machine.blank ;
   Spectrum.Simple.printf "@{<green> Alphabets: @} " ;
   Types.CharSet.iter (fun elem -> Spectrum.Simple.printf " '%c' " elem ) machine.alphabet ;
@@ -92,17 +92,18 @@ let print_machine_definition machine =
   Spectrum.Simple.printf "@{<green> Transitions: @} \n" ;
   let print_transition transition =
     match transition with 
-    | Defined (a, b, c, d) ->  Spectrum.Simple.printf "\t[Read char : %c\n\tWrite char: %c\n\tAction: %s\n\tToState: %s]\n\n" a b (match c with | Left -> "Left" | _ -> "Right") d;
+    | Defined (a, b, c, d) ->  Spectrum.Simple.printf "\t@{<aqua>Read char :@} %c\n\t@{<aqua>Write char :@} %c\n\t@{<aqua>Action :@} %s\n\t@{<aqua>ToState :@} %s\n\n" a b (match c with | Left -> "Left" | _ -> "Right") d;
     | Undefined ->  Spectrum.Simple.printf "\t[UNDEFINED]\n\n"
    
 
   in
   let print_state_transitions transition = 
     match transition with
-    | Normal (state_name, transitions) -> Spectrum.Simple.printf "  %s\n" (state_name); 
+    | Normal (state_name, transitions) -> Spectrum.Simple.printf "  @{<blue> %s: @}\n" (state_name); 
       Array.iter print_transition transitions;
-    | Final state_name -> Spectrum.Simple.printf "  %s [FINAL]\n" (state_name)
+    | Final state_name -> Spectrum.Simple.printf "  @{<blue> %s: @} [FINAL]\n" (state_name)
   in
 
   Array.iter (fun (pair:(Types.state_transitions)) -> print_state_transitions pair) machine.transition_table;
+  Spectrum.Simple.printf "@{<green>@{<bold>===============@}@} Execution @{<green>@{<bold>===============@}@}\n";
   

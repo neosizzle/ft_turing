@@ -32,7 +32,7 @@ type state_index = int
 type to_state = string
 type read_char = char
 type write_char = char
-type transition = Defined of read_char * write_char * action * to_state | Undefined (*Two possible values, can be Defined aka (char * action * state_idx) or Undefined aka unit*)
+type transition = Defined of (read_char * write_char * action * to_state) | Undefined (*Two possible values, can be Defined aka (char * action * state_idx) or Undefined aka unit*)
 type state_transitions = Normal of (string * transition array) | Final of string (*Two possible values, can be Normal aka (string * transition array) or Final aka String*)
 
 type machine_definition = {
