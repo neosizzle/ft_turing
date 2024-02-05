@@ -50,3 +50,18 @@ type tape = {
 	head: int;
 	size: int;
 }
+
+(* Represents a state cache entry *)
+type cache_entry = {
+	hash: string;
+	hits: int;
+	state: string;
+	tape: tape;
+}
+
+(* Represents a state cache to store snapshots of states *)
+type state_cache = {
+	entries: cache_entry list;
+	total_hits: int;
+	hit_limit: int;
+}

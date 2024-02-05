@@ -40,6 +40,15 @@ let replace_char n str _char =
   let sec_half = last_n_chars ((String.length str) - n - 1) str in
   first_half ^ _char ^ sec_half
 
+(* Remove all instances of a certain character in a string *)
+let remove_character char_to_remove str =
+  let buf = Buffer.create (String.length str) in
+  String.iter (fun c -> if c != char_to_remove then Buffer.add_char buf c) str;
+  Buffer.contents buf
+
+(* Replace an item in a list with another item of the same type *)
+let replace_lst l pos a = List.mapi (fun i x -> if i = pos then a else x) l
+
 (*
   Confirm that curr_members have at least all members in required_members
 *)

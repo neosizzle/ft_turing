@@ -1,7 +1,7 @@
 NAME = ft_turing
 
 # Order matters, no way to escape the interperter :()
-SRCS = srcs/Types.ml srcs/Utils.ml srcs/Lexxer.ml srcs/Machinebuilder.ml srcs/Tape.ml srcs/Executor.ml srcs/main.ml
+SRCS = srcs/Types.ml srcs/Utils.ml srcs/Lexxer.ml srcs/Machinebuilder.ml srcs/Tape.ml srcs/Executor.ml srcs/StateCache.ml srcs/main.ml
 SRCS_OBJS_NATIVE = $(SRCS:.ml=.cmx)
 SRCS_OBJS_INTERP = $(SRCS:.ml=.cmo)
 
@@ -17,12 +17,12 @@ all :
 native: setup $(INTERFACES_OBJS) $(SRCS_OBJS_NATIVE) 
 	@echo native linking..
 	ocamlfind ocamlopt $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_NATIVE) -I srcs
-	 $(MAKE) clean
+	$(MAKE) clean
 
 interp: setup $(INTERFACES_OBJS) $(SRCS_OBJS_INTERP)
 	@echo interp linking..
 	ocamlfind ocamlc $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_INTERP) -I srcs
-	 $(MAKE) clean
+	$(MAKE) clean
 
 setup :
 	@echo Run eval opam env to load opam to env
