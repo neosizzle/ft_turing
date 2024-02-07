@@ -4,7 +4,7 @@ let create =
   let new_item = {
     entries = [];
     total_hits = 0;
-    hit_limit = 5;
+    hit_limit = 100;
   } in
   new_item
 
@@ -19,7 +19,7 @@ let add_into cache state tape blank =
   match List.find_index (fun elem -> elem.hash = hashed) cache.entries with
   | Some index ->
     if (List.nth cache.entries index).hits >= cache.hit_limit then begin
-      Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: StateCache: Loop detected\n"; exit (-1) 
+      Spectrum.Simple.printf "@{<red>[ERROR]@} ft_turing: StateCache: No-Halt detected (hash: %s)\n" hashed; exit (-1) 
     end;
     {
       total_hits = cache.total_hits + 1;

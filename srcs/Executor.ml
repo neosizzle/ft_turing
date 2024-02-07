@@ -19,16 +19,22 @@ let _get_state_index_by_state_str transition_table input =
   ) transition_table
 
 (* Iterate with new data *)
-let rec execute tape (machine:machine_definition)  = 
-  (* Print the current tape *)
-  let tape_str = Tape.tape_to_str tape in
-  Spectrum.Simple.printf "@{<grey>%s@}\n" tape_str;
-
+let rec execute tape state_cache (machine:machine_definition)  = 
   (* Get current state *)
   (* returns  state_transitions array *)
   let curr_state = machine.transition_table.(machine.current_state) in 
 
-  
+  let curr_state_str = match curr_state with 
+  | Normal(state_name, _) -> state_name 
+  | Final(state_name) -> state_name in
+
+  (* Print the current tape *)
+  let tape_str = Tape.tape_to_str tape in
+  Spectrum.Simple.printf "@{<grey>%s@} (%s)\n" tape_str curr_state_str;
+
+  (* Update state_cache *)
+  let new_state_cache = StateCache.add_into state_cache curr_state_str tape machine.blank in
+
   match curr_state with 
   (* Base Case: Current state is a halt state *)
   | Types.Final state_str -> state_str ^ "\n"
@@ -59,5 +65,5 @@ let rec execute tape (machine:machine_definition)  =
           (* Create new machine definition with updated state_index *)
           let new_machine = {machine with current_state = new_state_idx } in
 
-          execute moved_tape new_machine
+          execute moved_tape new_state_cache new_machine
         | Types.Undefined -> "undefined!!!"
