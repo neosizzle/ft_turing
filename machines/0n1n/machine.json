@@ -1,0 +1,52 @@
+{
+	"name"    : "is_palindrome",
+	"alphabet": [ "0", "1", "y", "n", ".", "-"],
+	"blank"   : ".",
+	"states"  : [
+		"init",
+		"is_one",
+		"get_last_one",
+		"get_most_left",
+		"deny",
+		"HALT"
+	],
+	"initial" : "init",
+	"finals"  : [ "HALT"],
+	"transitions" : {
+		"init": [
+			{ "read" : "-", "to_state": "init", "write": "-", "action": "RIGHT"},
+			{ "read" : "0", "to_state": "get_last_one", "write": "-", "action": "RIGHT"},
+			{ "read" : "1", "to_state": "deny", "write": "1", "action": "RIGHT"},
+			{ "read" : "y", "to_state": "HALT", "write": "y", "action": "LEFT"},
+			{ "read" : "n", "to_state": "HALT", "write": "n", "action": "LEFT"}
+		],
+		"get_last_one": [
+			{ "read" : "-", "to_state": "get_last_one", "write": "-", "action": "RIGHT"},
+			{ "read" : "0", "to_state": "get_last_one", "write": "0", "action": "RIGHT"},
+			{ "read" : "1", "to_state": "get_last_one", "write": "1", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "is_one", "write": "y", "action": "LEFT"},
+			{ "read" : "y", "to_state": "is_one", "write": "y", "action": "LEFT"}
+		],
+
+		"is_one": [
+			{ "read" : "-", "to_state": "is_one", "write": "-", "action": "LEFT"},
+			{ "read" : ".", "to_state": "deny", "write": ".", "action": "RIGHT"},
+			{ "read" : "1", "to_state": "get_most_left", "write": "-", "action": "LEFT"},
+			{ "read" : "0", "to_state": "deny", "write": "0", "action": "RIGHT"}
+		],
+		"get_most_left": [
+			{ "read" : "-", "to_state": "get_most_left", "write": "-", "action": "LEFT"},
+			{ "read" : "1", "to_state": "get_most_left", "write": "1", "action": "LEFT"},
+			{ "read" : "0", "to_state": "get_most_left", "write": "0", "action": "LEFT"},
+			{ "read" : ".", "to_state": "init", "write": ".", "action": "RIGHT"}
+		],
+		"deny": [
+			{ "read" : "1", "to_state": "deny", "write": "1", "action": "RIGHT"},
+			{ "read" : "0", "to_state": "deny", "write": "0", "action": "RIGHT"},
+			{ "read" : "-", "to_state": "deny", "write": "-", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "HALT", "write": "n", "action": "LEFT"},
+			{ "read" : "y", "to_state": "HALT", "write": "n", "action": "LEFT"},
+			{ "read" : "n", "to_state": "HALT", "write": "n", "action": "LEFT"}
+		]
+	}
+}
