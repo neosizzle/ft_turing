@@ -1,5 +1,5 @@
 {
-	"name"    : "is_palindrome",
+	"name"    : "0n1n",
 	"alphabet": [ "0", "1", "y", "n", ".", "-"],
 	"blank"   : ".",
 	"states"  : [

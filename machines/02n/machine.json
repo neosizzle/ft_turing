@@ -1,0 +1,22 @@
+{
+	"name"    : "02n",
+	"alphabet": [ "0", "y", "n", "."],
+	"blank"   : ".",
+	"states"  : [
+		"init",
+		"get_pair_zero",
+		"HALT"
+	],
+	"initial" : "init",
+	"finals"  : [ "HALT"],
+	"transitions" : {
+		"init": [
+			{ "read" : ".", "to_state": "HALT", "write": "y", "action": "LEFT"},
+			{ "read" : "0", "to_state": "get_pair_zero", "write": "0", "action": "RIGHT"}
+		],
+		"get_pair_zero": [
+			{ "read" : ".", "to_state": "HALT", "write": "n", "action": "LEFT"},
+			{ "read" : "0", "to_state": "init", "write": "0", "action": "RIGHT"}
+		]
+	}
+}
