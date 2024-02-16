@@ -98,10 +98,11 @@ def revserse_aaction(action):
 	else :
 		action.direction = "LEFT"
 
+# apply_absfun
 # also populates transitions with 'multiple' 
 # this populates write fields as well
 # this should be called last because all Next to_states will be routed to final 
-def apply_absfun (_absfun, final_statename):
+def final_application (_absfun, final_statename):
 	res = []
 	for state in _absfun:
 		state_name = state.name
@@ -134,6 +135,11 @@ def apply_absfun (_absfun, final_statename):
 		# push to res
 		res.append(new_state)
 	return res
+
+# join_absfun
+# Converts all Next state into actual states
+def join_states:
+	print("haha")
 
 # reads json file and return the contents
 def load_json_file(filepath):
@@ -170,7 +176,7 @@ def main(filepath):
 	states_lst = [state_1, state_2]
 	for state in states_lst:
 		print(state)
-	res = apply_absfun(states_lst, "END")
+	res = final_application(states_lst, "END")
 	for state in res:
 		print(state)
 	# print(res)

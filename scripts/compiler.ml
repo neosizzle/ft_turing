@@ -607,5 +607,6 @@ let exec_machine =
 	let state_2 = ("state2", [m_transition]) in
 	let states_lst = [state_1; state_2] in
 	print_absfun states_lst;
-	let res = apply_absfun states_lst "END" in
-	print_jtransition res
+	let res = join_absfun [states_lst] in
+	print_endline "========================";
+	print_absfun res
