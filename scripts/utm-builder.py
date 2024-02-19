@@ -2,6 +2,9 @@
 import sys
 import json
 from pprint import pprint
+import copy
+# copy.deepcopy?
+
 
 #######################
 ###     CLASSES     ###
@@ -24,7 +27,9 @@ class Action:
 # All states
 states = []
 
-# Write value 
+# Write value
+# type - Write (arbitrary string) | Copy (sme with read char in transiton)
+# value - Write's string
 class Write:
 	def __init__(self, type, value):
 		self.type = type
@@ -35,7 +40,9 @@ class Write:
 			return f"<{self.type}>"
 		return f"{self.value}"
 
-# To state value 
+# To state value
+# type - To_state (arbitrary to state string) | Same (Same wtih current state) | Next (Another state, not known) | Loop ()
+# value - To_state's string
 class ToState:
 	def __init__(self, type, value):
 		self.type = type
@@ -47,6 +54,11 @@ class ToState:
 		return f"{self.value}"
 
 # Transition value
+# type - Standart | Multiple
+# read_char - string to read or string(s) to read if with 'Multiple' type
+# to_state - ToState struct
+# write - string to write
+# action - action struct
 class Transition:
 	def __init__(self, type, read_char, to_state, write, action):
 		self.type = type
@@ -59,6 +71,8 @@ class Transition:
 		return f"{self.read_char}, to_state: {self.to_state}, write: {self.write}, action: {self.action}, type: {self.type}"
 
 # State value
+# name - state name
+# transitions - array of Transition struct
 class State:
 	def __init__(self, name, transitions):
 		self.name = name
@@ -66,13 +80,14 @@ class State:
 
 	def __str__(self):
 		res = ""
-		res += f"{self.name}, transitions: \n"
-		for transition in self.transitions:
+		res += f"{{ {self.name}, transitions: \n"
+		for index, transition in enumerate(self.transitions):
 			res += f"{transition}\n"
+		res += "}"
 		return res
 
 #######################
-###     PROGRAM     ###
+###     GLOBALS     ###
 #######################
 
 # absfun, an array which stores an array of (state classes)
@@ -90,6 +105,10 @@ left_char = "L"
 state_range = []
 sub_alphabet = []
 output_alphabet = []
+
+#######################
+###     PROGRAM     ###
+#######################
 
 # reverses an action value
 def revserse_aaction(action):
@@ -137,9 +156,43 @@ def final_application (_absfun, final_statename):
 	return res
 
 # join_absfun
+# takes an array of state arrays [[s1, s2, s3], [s3, s5, s6]]
 # Converts all Next state into actual states
-def join_states:
-	print("haha")
+def join_states(state_lists):
+	res = []
+	for index, state_list in enumerate(state_lists):
+		next_item = None
+		if index < len(state_lists) - 1:
+			next_item = state_lists[index + 1]
+		for state in state_list :
+			new_transitions = []
+			for transition in state.transitions :
+				new_transition = transition
+				if transition.to_state.type == "Next" and next_item != None:
+					new_transition = Transition(transition.type, transition.read_char, ToState("To_state", next_item[0].name), transition.write, transition.action)
+				new_transitions.append(new_transition)
+			new_state = State(state.name, new_transitions)
+			res.append(new_state)
+	return res
+
+# nmoove
+# generates arbitrary move states and transitions according to all output_characters
+# the states generated are according to the len input
+# <len>moove_<action>, <len - 1>moove_<action>, <len - 2>moove_<action> ... until <len - n> = 1
+# the to_state value of the last state generated here will be a Loop or a Next type based on arg as well
+def nmoove(len, action, loop = False, name = "moove_"):
+	res = []
+	for index in range(len,  0, -1):
+		new_transition = Transition(
+			"Multiple",
+			copy.deepcopy(output_alphabet),
+			ToState("To_state", f"{index - 1}{name}{action.inner}") if index > 1 else ToState(f"{'Loop' if loop else 'Next'}", ""),
+			Write("Copy", ""),
+			action,
+			)
+		new_state = State(f"{index}{name}{action.inner}", [new_transition])
+		res.append(new_state)
+	return res
 
 # reads json file and return the contents
 def load_json_file(filepath):
@@ -154,9 +207,12 @@ def main(filepath):
 	
 	# init globals
 	sub_alphabet = jsonstr['alphabet']
-	state_range = jsonstr['states']
-	output_alphabet = [blank, pipe, cursor, right_char, left_char] + sub_alphabet
+	# state_range = jsonstr['states']
+	state_range = list(map(lambda x: chr(x[0] + ord('A')), enumerate(jsonstr['states'])))
+	global output_alphabet
+	output_alphabet = state_range + [blank, pipe, cursor, right_char, left_char] + sub_alphabet
 
+	print(state_range)
 	# testing
 	l_action = Action("LEFT")
 	r_action = Action("RIGHT")
@@ -171,12 +227,15 @@ def main(filepath):
 	s_transition_3 = Transition("Standart", "readchar3", n_to_state, c_write, r_action)
 	s_transition_e = Transition("Standart", "readchare", l_to_state, c_write, r_action) 
 	m_transition = Transition("Multiple", ["read char", "m_read"], t_to_state, w_write, l_action) 
-	state_1 = State("state1", [s_transition, s_transition_3, s_transition_2])
+	state_1 = State("state1", [s_transition_3, s_transition_3])
 	state_2 = State("state2", [m_transition])
-	states_lst = [state_1, state_2]
+	state_3 = State("state3", [m_transition])
+	states_lst = [state_1, state_1]
+	states_lst_nonext = [state_3, state_2]
 	for state in states_lst:
 		print(state)
-	res = final_application(states_lst, "END")
+	print("===================")
+	res = nmoove(3, l_action)
 	for state in res:
 		print(state)
 	# print(res)

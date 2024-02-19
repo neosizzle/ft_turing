@@ -603,10 +603,11 @@ let exec_machine =
 	let s_transition_3 = Standart("readchar3", n_to_state, c_write, r_action) in 
 	let s_transition_e = Standart("readchare", l_to_state, c_write, r_action) in 
 	let m_transition = Multiple(["read char"; "m_read"], t_to_state, w_write, l_action) in 
-	let state_1 = ("state1", [s_transition; s_transition_3; s_transition_2]) in
+	let state_1 = ("state1", [s_transition_3; s_transition_3]) in
 	let state_2 = ("state2", [m_transition]) in
-	let states_lst = [state_1; state_2] in
-	print_absfun states_lst;
-	let res = join_absfun [states_lst] in
+	let state_3 = ("state3", [m_transition]) in
+	let states_lst = [state_1; state_1] in
+	let states_lst_nonext = [state_3; state_2] in
+	let res = nmoove ~loop:true  3 l_action in
 	print_endline "========================";
 	print_absfun res
