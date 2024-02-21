@@ -614,9 +614,38 @@ let exec_machine =
 	let s_transition_3 = Standart("readchar3", n_to_state, c_write, r_action) in 
 	let s_transition_e = Standart("readchare", l_to_state, c_write, r_action) in 
 	let m_transition = Multiple(["read char"; "m_read"], t_to_state, w_write, l_action) in 
-	let state_1 = ("state1", [s_transition_3; s_transition_3]) in
+	let state_1 = ("state1", [s_transition_3]) in
 	let state_2 = ("state2", [m_transition]) in
 	let state_3 = ("state3", [m_transition]) in
-	let res = create_loop [("name1", [s_transition_e; s_transition_e])] in
-	print_endline "========================";
-	print_absfun res
+	let c_list s =
+		[(s, [s_transition_e]); ("whattt", [s_transition_2])] in
+	let res = store ["=one"; "=two"; "=three"] [state_1; state_2] c_list l_action in
+	Format.printf "======store ret  state * ((state list * state list) list)\n";
+
+	Format.printf "Switch (print_transition(iter(snd (fst res)))): %s \n" (fst (fst res));
+
+	List.iter (snd (fst res)) (fun item -> 
+		print_transition (item)
+	);
+
+	Format.printf "Flst iter((snd res)): \n";
+	List.iter (snd res) (fun item -> 
+		List.iter (fst item) (fun item2 -> 
+			Format.printf "Fst state: %s\n" (fst (item2));
+			(* Format.printf "\n"; *)
+			(* Format.printf "========== Fst transitions: \n";
+			List.iter (snd item2) (print_transition) *)
+			);
+			Format.printf "========== Fst done ============ \n";
+		List.iter (snd item) (fun item2 -> 
+			Format.printf "Snd state: %s\n" (fst (item2));
+			(* Format.printf "=========Snd transitions: \n";
+			List.iter (snd item2) (print_transition) *)
+			);
+			Format.printf "========== Snd done ============ \n";
+		);
+
+	Format.printf "======store ret end\n";
+
+	(* print_endline "========================";
+	print_absfun res *)

@@ -233,6 +233,15 @@ def create_loop(states):
 		res.append(State(state.name, new_transitions))
 	return res
 
+# store
+# make a switch-execute-and-write state sequence
+# the first argument is a list of possible characters to switch
+# the second argument is the states that need to be executed BEFORE the write
+# the third argument specifies which states to be executied FOR the write
+# the 4th argument is the direction all of switches will take place
+# this would generate a  state * ((state list * state list) list) in ocaml notation
+# it would generate a [State, [ [ [State...], [State...] ] ...] ]. the notations with the '...' are variable length.
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
