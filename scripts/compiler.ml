@@ -81,7 +81,10 @@ let print_absfun stateslist =
 			Format.printf "statename: %s\ntransitions: \n" (fst _state);
 			List.iter (snd _state) (fun transition -> print_transition transition)
 	)
-	
+let print_state state =
+	Format.printf "statename: %s\ntransitions: \n" (fst state);
+	List.iter (snd state) (fun transition -> print_transition transition)
+
 let print_labsfun input = 
 	List.iter input (fun stateslist -> 
 		List.iter stateslist (
@@ -233,11 +236,19 @@ let action_letter action = match action with
 	| Left -> "L"
 	| Right -> "R"
 
-
+(* It accepts a list of (read_char, tostate, action) and a statename. 
+	 It generates an array with one element with a pair of the name and the list 
+	 mapped as transitions with Copy for write type.
+*)
 let if_func ?(name = "if_state") condlst =
 	let create_states (c, ts, action) = Standart (c, ts, Copy, action) in
 	[(name, List.map condlst create_states)]
 
+(*
+	Takes in a list of states, mapping back the original list with 
+	all the transitions which have a to_state type of Loop into a to_state
+	type of To_state with the value as the first state in the list
+*)
 let create_loop lst =
 	let entry = get_entry lst in
 	let to_state_looping ts = match ts with
@@ -606,8 +617,6 @@ let exec_machine =
 	let state_1 = ("state1", [s_transition_3; s_transition_3]) in
 	let state_2 = ("state2", [m_transition]) in
 	let state_3 = ("state3", [m_transition]) in
-	let states_lst = [state_1; state_1] in
-	let states_lst_nonext = [state_3; state_2] in
-	let res = nmoove ~loop:true  3 l_action in
+	let res = create_loop [("name1", [s_transition_e; s_transition_e])] in
 	print_endline "========================";
 	print_absfun res

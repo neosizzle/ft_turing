@@ -41,7 +41,7 @@ class Write:
 		return f"{self.value}"
 
 # To state value
-# type - To_state (arbitrary to state string) | Same (Same wtih current state) | Next (Another state, not known) | Loop ()
+# type - To_state (arbitrary to state string) | Same (Same wtih current state) | Next (Another state, not known) | Loop (special type for loops)
 # value - To_state's string
 class ToState:
 	def __init__(self, type, value):
@@ -194,6 +194,45 @@ def nmoove(len, action, loop = False, name = "moove_"):
 		res.append(new_state)
 	return res
 
+# if_func
+# takes in a condition list, which will be mapped to transitions of a state
+# [{
+# 	'read_char': '',
+# 	'to_state': ToState(...),
+# 	'action': Action(...)
+# }]
+def if_func(condlist, name = "if_state"):
+	new_transitions = []
+	for cond in condlist :
+		new_transitions.append(Transition("Standart", cond['read_char'], cond['to_state'], Write("Copy", ""), cond['action']))
+	res = State(name, new_transitions)
+	return [res]
+
+# create_loop
+# Takes in a list of states, mapping back the original list with 
+# all the transitions which have a to_state type of Loop into a to_state
+# type of To_state with the value as the first state in the list
+def create_loop(states):
+	if len(states) < 0 :
+		raise ValueError('create_loop: states must be longer than 0')
+	res = []
+	first_statename = states[0].name
+	for state in states :
+		new_transitions = []
+		for transition in state.transitions:
+			new_transition = transition
+			if transition.to_state.type == "Loop":
+				new_transition = Transition(
+					transition.type,
+					transition.read_char,
+					ToState("To_state", first_statename),
+					transition.write,
+					transition.action
+					)
+			new_transitions.append(new_transition)
+		res.append(State(state.name, new_transitions))
+	return res
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -212,7 +251,6 @@ def main(filepath):
 	global output_alphabet
 	output_alphabet = state_range + [blank, pipe, cursor, right_char, left_char] + sub_alphabet
 
-	print(state_range)
 	# testing
 	l_action = Action("LEFT")
 	r_action = Action("RIGHT")
@@ -232,13 +270,9 @@ def main(filepath):
 	state_3 = State("state3", [m_transition])
 	states_lst = [state_1, state_1]
 	states_lst_nonext = [state_3, state_2]
-	for state in states_lst:
-		print(state)
-	print("===================")
-	res = nmoove(3, l_action)
+	res = create_loop([state_1, State("name1", [s_transition_e, s_transition_e]), state_2])
 	for state in res:
 		print(state)
-	# print(res)
 	# pprint(sub_alphabet[0])
 
 # Check if the script is run directly
