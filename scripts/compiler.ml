@@ -78,8 +78,9 @@ let print_jtransition jtransition =
 let print_absfun stateslist = 
 	List.iter stateslist (
 		fun _state ->
-			Format.printf "statename: %s\ntransitions: \n" (fst _state);
-			List.iter (snd _state) (fun transition -> print_transition transition)
+			Format.printf "{ statename: %s\ntransitions: \n" (fst _state);
+			List.iter (snd _state) (fun transition -> print_transition transition);
+			Format.printf " }\n"
 	)
 let print_state state =
 	Format.printf "statename: %s\ntransitions: \n" (fst state);
@@ -99,6 +100,35 @@ let print_exec_mach input =
 		Format.printf "hmm: %s\n" (fst elem)
 	)
 
+let print_store_ret res = 
+	Format.printf "======store ret  state * ((state list * state list) list)\n";
+	
+		Format.printf "Switch (print_transition(iter(snd (fst res)))): %s \n" (fst (fst res));
+	
+		List.iter (snd (fst res)) (fun item -> 
+			print_transition (item)
+		);
+	
+		Format.printf "Flst iter((snd res)): \n";
+		List.iter (snd res) (fun item -> 
+			List.iter (fst item) (fun item2 -> 
+				Format.printf "Seq state: %s\n" (fst (item2));
+				(* Format.printf "\n"; *)
+				Format.printf "========== Seq transitions: \n";
+				List.iter (snd item2) (print_transition)
+				);
+				Format.printf "========== Seq done ============ \n";
+			List.iter (snd item) (fun item2 -> 
+				Format.printf "Ext state: %s\n" (fst (item2));
+				Format.printf "=========Ext transitions: \n";
+				List.iter (snd item2) (print_transition)
+				);
+				Format.printf "========== Ext done ============ \n";
+				Format.printf "========== branch done ============ \n";
+			);
+	
+		Format.printf "======store ret end\n"
+	
 let blank = "~"
 let pipe = "|"
 let cursor = "_"
@@ -618,35 +648,9 @@ let exec_machine =
 	let state_2 = ("state2", [s_transition_e]) in
 	let state_3 = ("state3", [m_transition]) in
 	let c_list s =
-		[("whatt", [s_transition_2; s_transition_e]); ("howw", [s_transition; s_transition_e])] in
-	let res = store ["=one"; "=two"; "=three"] [state_1; state_2; state_3] c_list l_action in
-	Format.printf "======store ret  state * ((state list * state list) list)\n";
-(* 
-	Format.printf "Switch (print_transition(iter(snd (fst res)))): %s \n" (fst (fst res));
-
-	List.iter (snd (fst res)) (fun item -> 
-		print_transition (item)
-	); *)
-
-	Format.printf "Flst iter((snd res)): \n";
-	List.iter (snd res) (fun item -> 
-		(* List.iter (fst item) (fun item2 -> 
-			Format.printf "Seq state: %s\n" (fst (item2));
-			(* Format.printf "\n"; *)
-			Format.printf "========== Seq transitions: \n";
-			List.iter (snd item2) (print_transition)
-			);
-			Format.printf "========== Seq done ============ \n"; *)
-		List.iter (snd item) (fun item2 -> 
-			Format.printf "Ext state: %s\n" (fst (item2));
-			Format.printf "=========Ext transitions: \n";
-			List.iter (snd item2) (print_transition)
-			);
-			Format.printf "========== Ext done ============ \n";
-			Format.printf "========== branch done ============ \n";
-		);
-
-	Format.printf "======store ret end\n";
-
-	(* print_endline "========================";
-	print_absfun res *)
+		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
+	let store_res = store ["=one"; "=two"; "=three"] [state_1; state_2; state_3] c_list l_action in
+	(* print_store_ret store_res; *)
+	let res = store_fun store_res in
+	print_endline "========================";
+	print_absfun res

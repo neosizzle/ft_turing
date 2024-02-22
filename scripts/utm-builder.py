@@ -110,6 +110,24 @@ output_alphabet = []
 ###     PROGRAM     ###
 #######################
 
+# prints store return value for debugging
+def print_store(res):
+	print("-------switch------")
+	print(res[0])
+	print("-------------------")
+
+	for branches in res[1] :
+		for branch in branches:
+			print("==========seq=========")
+			for sequence_state in branch[0]:
+				print(sequence_state)
+			print("======================")
+			print("==========ext=========")
+			for ext_state in branch[1]:
+					print(ext_state)
+			print("======================")
+		print("======branch end=====")
+
 # reverses an action value
 def revserse_aaction(action):
 	if action.direction == "LEFT" :
@@ -156,7 +174,8 @@ def final_application (_absfun, final_statename):
 	return res
 
 # join_absfun
-# takes an array of state arrays [[s1, s2, s3], [s3, s5, s6]]
+# takes an array of state arrays [[s1, s2, s3], [s4, s5, s6]]
+# any next to_states in transitions in s1, s2 or s3 will be converted to To_state to s4
 # Converts all Next state into actual states
 def join_states(state_lists):
 	res = []
@@ -321,6 +340,24 @@ def store(character_list, states_pre_write, states_for_write_fn, switch_directio
 
 	return res
 
+# store_fun
+# joins all the states from the store() function
+# for each branch, any to_state Next's on the sequenced states will be pointed to
+# the first state of the paired extract state 
+def join_store(store_ret):
+	res = []
+
+	# append the first switch state
+	res.append(store_ret[0])
+
+	# process branches
+	for branch in store_ret[1]:
+		seq_states = branch[0][0]
+		ext_states = branch[0][1]
+		joined_states = join_states([seq_states, ext_states])
+		for state in joined_states :
+			res.append(state)
+	return res
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -359,14 +396,11 @@ def main(filepath):
 	states_lst = [state_1, state_1]
 	states_lst_nonext = [state_3, state_2]
 	def c_list(s) :
-		return [State("whattt", [s_transition_2, s_transition_e]), State("howw", [s_transition, s_transition_e])]
-	res = store(["=one", "=two", "=three"], [state_1, state_2, state_3], c_list, l_action)
-	for branches in res[1] :
-		for branch in branches:
-			for sequence_state in branch[1]:
-				print(sequence_state)
-			print("======ectract end=====")
-		print("======branch end=====")
+		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
+	res_store = store(["=one", "=two", "=three"], [state_1, state_2, state_3], c_list, l_action)
+	res = join_store(res_store)
+	for state in res:
+		print(state)
 	# pprint(sub_alphabet[0])
 
 # Check if the script is run directly
