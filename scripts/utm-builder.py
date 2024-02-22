@@ -241,7 +241,7 @@ def create_loop(states):
 # the 4th argument is the direction all of switches will take place
 # this would generate a  state * ((state list * state list) list) in ocaml notation
 # it would generate a [State, [ [ [State...], [State...] ] ...] ]. the notations with the '...' are variable length.
-def store(character_list states_pre_write states_for_write_fn switch_direction) :
+def store(character_list, states_pre_write, states_for_write_fn, switch_direction) :
 	res = []
 
 	if len(states_pre_write) < 0 :
@@ -253,13 +253,71 @@ def store(character_list states_pre_write states_for_write_fn switch_direction) 
 		new_transition = Transition(
 			"Standart",
 			read_char,
-			ToState("To_state", f"{read_char}_{states_pre_write[0].name}"),
+			ToState("To_state", f"st_{read_char}_{states_pre_write[0].name}"),
 			Write("Copy", ""),
 			switch_direction
 			)
 		switch_state_transitions.append(new_transition)
 	switch_state = State("st_switch", switch_state_transitions)
+
+	# generates the branches depending with length of how
+	# many items we have at char_list  (res[1])
+	branches = []
+
+	for read_char in character_list :
+		# generate each branch, effectively a pair of state lists. res[1][...]
+		state_list_pairs = []
+
+		# generate the first list of the pair - the sequence for states_pre_write
+		# for the current branch res[1][...][0][0]
+		sequence_states = []
+		for sequence_state in states_pre_write :
+			new_statename = f"st_{read_char}_{sequence_state.name}"
+			new_transitions = []
+			for transition in sequence_state.transitions:
+				new_transition = transition
+				if new_transition.to_state.type == "To_state" :
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						ToState("To_state", f"st_{read_char}_{new_transition.to_state.value}"),
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_sequence_state = State(new_statename, new_transitions)
+			sequence_states.append(new_sequence_state)
+
+		# generate the second list of the pair - the extract states for current branch
+		# res[1][...][0][1]
+		extract_states = []
+		pregen_write_states = states_for_write_fn(read_char)
+		for state in pregen_write_states :
+			# change state name
+			new_statename = f"extract_{read_char}_{state.name}"
+			new_transitions = []
+
+			# change new transitions, replace tostate names
+			for transition in state.transitions :
+				new_transition = transition
+				if new_transition.to_state.type == "To_state" :
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						ToState("To_state", f"extract_{read_char}_{new_transition.to_state.value}"),
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_state = State(new_statename, new_transitions)
+			extract_states.append(new_state)
+
+		state_list_pairs.append(sequence_states)
+		state_list_pairs.append(extract_states)
+		branches.append([state_list_pairs])
+
 	res.append(switch_state)
+	res.append(branches)
 
 	return res
 
@@ -295,15 +353,20 @@ def main(filepath):
 	s_transition_3 = Transition("Standart", "readchar3", n_to_state, c_write, r_action)
 	s_transition_e = Transition("Standart", "readchare", l_to_state, c_write, r_action) 
 	m_transition = Transition("Multiple", ["read char", "m_read"], t_to_state, w_write, l_action) 
-	state_1 = State("state1", [s_transition_3, s_transition_3])
-	state_2 = State("state2", [m_transition])
+	state_1 = State("state1", [s_transition_3])
+	state_2 = State("state2", [s_transition_e])
 	state_3 = State("state3", [m_transition])
 	states_lst = [state_1, state_1]
 	states_lst_nonext = [state_3, state_2]
 	def c_list(s) :
-		return [State(s, [s_transition_e]), State("whattt", [s_transition_2])]
-	res = store(["=one", "=two", "=three"], [state_1, state_2], c_list, l_action)
-	print(res[0])
+		return [State("whattt", [s_transition_2, s_transition_e]), State("howw", [s_transition, s_transition_e])]
+	res = store(["=one", "=two", "=three"], [state_1, state_2, state_3], c_list, l_action)
+	for branches in res[1] :
+		for branch in branches:
+			for sequence_state in branch[1]:
+				print(sequence_state)
+			print("======ectract end=====")
+		print("======branch end=====")
 	# pprint(sub_alphabet[0])
 
 # Check if the script is run directly
