@@ -241,6 +241,27 @@ def create_loop(states):
 # the 4th argument is the direction all of switches will take place
 # this would generate a  state * ((state list * state list) list) in ocaml notation
 # it would generate a [State, [ [ [State...], [State...] ] ...] ]. the notations with the '...' are variable length.
+def store(character_list states_pre_write states_for_write_fn switch_direction) :
+	res = []
+
+	if len(states_pre_write) < 0 :
+		raise ValueError('create_loop: states must be longer than 0')
+	
+	# generates the switch state (res[0])
+	switch_state_transitions = []
+	for read_char in character_list :
+		new_transition = Transition(
+			"Standart",
+			read_char,
+			ToState("To_state", f"{read_char}_{states_pre_write[0].name}"),
+			Write("Copy", ""),
+			switch_direction
+			)
+		switch_state_transitions.append(new_transition)
+	switch_state = State("st_switch", switch_state_transitions)
+	res.append(switch_state)
+
+	return res
 
 # reads json file and return the contents
 def load_json_file(filepath):
@@ -279,9 +300,10 @@ def main(filepath):
 	state_3 = State("state3", [m_transition])
 	states_lst = [state_1, state_1]
 	states_lst_nonext = [state_3, state_2]
-	res = create_loop([state_1, State("name1", [s_transition_e, s_transition_e]), state_2])
-	for state in res:
-		print(state)
+	def c_list(s) :
+		return [State(s, [s_transition_e]), State("whattt", [s_transition_2])]
+	res = store(["=one", "=two", "=three"], [state_1, state_2], c_list, l_action)
+	print(res[0])
 	# pprint(sub_alphabet[0])
 
 # Check if the script is run directly
