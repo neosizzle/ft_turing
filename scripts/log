@@ -1,0 +1,79 @@
+========================
+{ statename: blank_until_huh
+transitions: 
+
+string: huh
+to_state: Next
+write: Copy
+action: Left
+
+string(multiple): A
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): B
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): C
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): D
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): E
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): 1
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): .
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): +
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): =
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): _
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): |
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): L
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): R
+to_state: Same
+write: ~
+action: Left
+
+string(multiple): ~
+to_state: Same
+write: ~
+action: Left
+ }

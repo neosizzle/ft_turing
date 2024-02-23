@@ -649,8 +649,8 @@ let exec_machine =
 	let state_3 = ("state3", [m_transition]) in
 	let c_list s =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
-	let store_res = store ["=one"; "=two"; "=three"] [state_1; state_2; state_3] c_list l_action in
+	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
 	(* print_store_ret store_res; *)
-	let res = store_fun store_res in
+	let res = find_nchar 2 "yeet" l_action r_action ~loop:true in
 	print_endline "========================";
 	print_absfun res

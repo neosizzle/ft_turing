@@ -358,6 +358,124 @@ def join_store(store_ret):
 		for state in joined_states :
 			res.append(state)
 	return res
+
+# loop_after_switch
+# does the same thing with join_store, except every to_state Loop in 
+# ext_states of each branch is changed to To_state with the value of the pairs
+# first seq_states 
+def loop_after_switch(store_ret) :
+	res = []
+
+	# append the first switch state
+	res.append(store_ret[0])
+
+	# process branches
+	for branch in store_ret[1]:
+		seq_states = branch[0][0]
+		ext_states = branch[0][1]
+		new_ext_states = []
+		for state in ext_states :
+			new_transitions = []
+			for transition in state.transitions :
+				new_transition = transition
+				if transition.to_state.type == "Loop":
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						ToState("To_state", seq_states[0].name),
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_state = State(state.name, new_transitions)
+			new_ext_states.append(new_state)
+		joined_states = join_states([seq_states, new_ext_states])
+		for state in joined_states :
+			res.append(state)
+	return res
+
+# loop_before_use
+# similar to loop_after_swiitch but it the loop will now point to the first state 
+# of ext_states instead
+def loop_before_use(store_ret) :
+	res = []
+
+	# append the first switch state
+	res.append(store_ret[0])
+
+	# process branches
+	for branch in store_ret[1]:
+		seq_states = branch[0][0]
+		ext_states = branch[0][1]
+		new_ext_states = []
+		for state in ext_states :
+			new_transitions = []
+			for transition in state.transitions :
+				new_transition = transition
+				if transition.to_state.type == "Loop":
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						ToState("To_state", ext_states[0].name),
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_state = State(state.name, new_transitions)
+			new_ext_states.append(new_state)
+		joined_states = join_states([seq_states, new_ext_states])
+		for state in joined_states :
+			res.append(state)
+	return res
+
+# write_c
+# Creates an arbitrary write state
+def arb_write(action, write_char) :
+	return [State(f"write_{write_char}", [Transition(
+		"Multiple",
+		output_alphabet,
+		ToState("Next", ""),
+		Write("Write", write_char),
+		action
+	)])]
+
+# range_without_c
+# takes a list and a character, then filters out all occurrences of c from the list
+def range_without_c(range, c):
+    return [x for x in range if x != c]
+
+# blank_until_char
+# this will create a list of states that will write blank characters to the tape head
+# until char is found.
+# the ovreride char option is set to true if you want to override the destination char
+def blank_until_char(char, action, override_char = False) :
+	final_write = Write("Write", blank) if override_char else Write("Copy", "")
+	transitions = [
+		Transition("Standart", char, ToState("Next", ""), final_write, action),
+		Transition("Multiple", range_without_c(output_alphabet, char), ToState("Same", ""), Write("Write", blank), action),
+	]
+	res = [
+		State(f"blank_until_{char}", transitions)
+	]
+	return res
+
+# find_nchar
+# this will create a list of states that will call next once len number of 
+# c has been found while traversing find_dir
+def find_nchar(len, c, next_dir, find_dir, loop = False):
+	res = []
+	for i in range(len, 0, -1):
+		is_final = True if i == 1 else False
+		statename = f"{find_dir.inner[0]}find{i}{c}"
+		next_statename = f"{find_dir.inner[0]}find{i - 1}{c}"
+		found_to_state = ToState("Loop" if loop else "Next", "") if is_final else ToState("To_state", next_statename)
+		transitions = [
+			Transition("Standart", c, found_to_state, Write("Copy", ""), find_dir),
+			Transition("Multiple", range_without_c(output_alphabet, c), ToState("Same", ""), Write("Copy", ""), next_dir),
+		]
+		res.append(State(statename, transitions))
+	return res
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -374,7 +492,7 @@ def main(filepath):
 	# state_range = jsonstr['states']
 	state_range = list(map(lambda x: chr(x[0] + ord('A')), enumerate(jsonstr['states'])))
 	global output_alphabet
-	output_alphabet = state_range + [blank, pipe, cursor, right_char, left_char] + sub_alphabet
+	output_alphabet = state_range +  sub_alphabet + [cursor, pipe, left_char, right_char, blank]
 
 	# testing
 	l_action = Action("LEFT")
@@ -397,8 +515,9 @@ def main(filepath):
 	states_lst_nonext = [state_3, state_2]
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
-	res_store = store(["=one", "=two", "=three"], [state_1, state_2, state_3], c_list, l_action)
-	res = join_store(res_store)
+	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
+	# res = loop_before_use(res_store)
+	res = find_nchar(2, "yeet", l_action, r_action, True)
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])
