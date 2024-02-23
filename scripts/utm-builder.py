@@ -476,6 +476,61 @@ def find_nchar(len, c, next_dir, find_dir, loop = False):
 		res.append(State(statename, transitions))
 	return res
 
+# restruct_machine
+# generates the states and transitions for the UTM initialization
+def build_machine_init():
+	actions = [
+		blank_until_char(pipe, Action("RIGHT"), True),
+		find_nchar(1, pipe, Action("RIGHT"), Action("RIGHT")),
+		blank_until_char(pipe, Action("RIGHT")),
+		find_nchar(2, pipe, Action("LEFT"), Action("LEFT")),
+		join_store(
+			store(
+				sub_alphabet,
+				join_states([find_nchar(2, pipe, Action("RIGHT"), Action("RIGHT")), nmoove(2, Action("LEFT"))]),
+				(lambda c: arb_write(Action("LEFT"), c)),
+				Action("LEFT")
+				)
+			),
+		blank_until_char(pipe, Action("LEFT"), True),
+		blank_until_char(blank, Action("RIGHT")),
+		find_nchar(1, pipe, Action("RIGHT"), Action("LEFT")),
+		nmoove(1, Action("LEFT")),
+		arb_write(Action("RIGHT"), pipe),
+		nmoove(2, Action("RIGHT")),
+		join_store(
+			store(
+				state_range,
+				join_states([nmoove(4, Action("LEFT"))]),
+				(lambda c: arb_write(Action("RIGHT"), c)),
+				Action("LEFT")
+				)
+			),
+	]
+	
+	actions_indexed = []
+	for index, action in enumerate(actions) :
+		new_action = []
+		for state in action:
+			new_transitions = []
+			for transition in state.transitions :
+				new_transition = transition
+				if transition.to_state.type == "To_state" :
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						ToState("To_state", f"{index + 1}_{transition.to_state.value}"),
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_state = State(f"{index + 1}_{state.name}", new_transitions)
+			new_action.append(new_state)
+		actions_indexed.append(new_action)
+
+	res = join_states(actions_indexed)
+	return res
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -488,8 +543,10 @@ def main(filepath):
 	jsonstr = load_json_file(filepath)
 	
 	# init globals
+	global sub_alphabet
 	sub_alphabet = jsonstr['alphabet']
 	# state_range = jsonstr['states']
+	global state_range
 	state_range = list(map(lambda x: chr(x[0] + ord('A')), enumerate(jsonstr['states'])))
 	global output_alphabet
 	output_alphabet = state_range +  sub_alphabet + [cursor, pipe, left_char, right_char, blank]
@@ -517,7 +574,7 @@ def main(filepath):
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
 	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
 	# res = loop_before_use(res_store)
-	res = find_nchar(2, "yeet", l_action, r_action, True)
+	res = build_machine_init()
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])

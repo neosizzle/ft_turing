@@ -63,7 +63,9 @@ let print_transition transition =
 		| Right -> "Right"
 		in
 
-		List.iter strings (fun string -> Format.printf "\nstring(multiple): %s\nto_state: %s\nwrite: %s\naction: %s\n" string to_state_str write_str action_str)
+		Format.printf "\nstring(multiple): [";
+		List.iter strings (fun string -> Format.printf "%s " string);
+		Format.printf "]\nto_state: %s\nwrite: %s\naction: %s\n" to_state_str write_str action_str
 
 let print_program program = 
 	List.iter  program (fun item ->
@@ -426,6 +428,7 @@ let restruct_machine =
 			store_fun (store state_range (join_absfun [nmoove 4 Left]) (write_c Right) Left)
 			] in
 			List.fold actions ~init:[] ~f:(@<)
+			(* actions *)
 		in
 		let res = join_absfun create_reg in 
 		(* Format.printf "=======restruct_machine ret\n";
@@ -651,6 +654,6 @@ let exec_machine =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
 	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
 	(* print_store_ret store_res; *)
-	let res = find_nchar 2 "yeet" l_action r_action ~loop:true in
+	let res = restruct_machine in
 	print_endline "========================";
 	print_absfun res
