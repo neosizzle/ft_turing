@@ -219,7 +219,7 @@ def nmoove(len, action, loop = False, name = "moove_"):
 # 	'read_char': '',
 # 	'to_state': ToState(...),
 # 	'action': Action(...)
-# }]
+# }...]
 def if_func(condlist, name = "if_state"):
 	new_transitions = []
 	for cond in condlist :
@@ -531,6 +531,226 @@ def build_machine_init():
 	res = join_states(actions_indexed)
 	return res
 
+# test_finals
+# generates states that switches to HALT state upon reading input char
+# also jumps to next state upon reading pipe
+# only goes right
+def test_finals(c) :
+	new_statename = f"is_final_{c}"
+	states_without_c = range_without_c(state_range, c)
+	transitions = []
+
+	transitions.append(Transition(
+		"Standart",
+		c,
+		ToState("To_state", "HALT"),
+		Write("Copy", ""),
+		Action("RIGHT")
+	))
+	transitions.append(Transition(
+		"Standart",
+		pipe,
+		ToState("Next", ""),
+		Write("Copy", ""),
+		Action("RIGHT")
+	))
+	for state_name in states_without_c:
+		new_transition = Transition(
+			"Standart",
+			state_name,
+			ToState("To_state", new_statename),
+			Write("Copy", ""),
+			Action("RIGHT")
+			)
+		transitions.append(new_transition)
+	return State(new_statename, transitions)
+
+# test_state_transition
+# this will generate states that will switch to Next state when reading input machine states
+# if c is found. Also moves RIGHT 4 times before doing the searching OR search current char.
+def test_state_transition(c) :
+	res = []
+	states_without_c = range_without_c(state_range, c)
+
+	# prepare cond
+	cond = []
+	cond.append({
+		'read_char': c,
+		'to_state': ToState("Next", ""),
+		'action': Action("RIGHT")
+	})
+	cond.append({
+		'read_char': pipe,
+		'to_state': ToState("To_state", "Sub_undefined"),
+		'action': Action("RIGHT")
+	})
+	cond_tostate = ToState("To_state", nmoove(4, Action("RIGHT"), name=f"{c}_state_check_moove")[0].name)
+	cond_action = Action("RIGHT")
+	for statename in states_without_c :
+		cond_read = statename
+		cond.append({
+			'read_char': cond_read,
+			'to_state': cond_tostate,
+			'action': cond_action
+		})
+
+	check_transitions = if_func(cond, name=f"{c}_is_state_transition")
+	moove_transitions = nmoove(4, Action("RIGHT"), loop=True, name=f"{c}_state_check_moove")
+
+	# combine the states
+	res = []
+	for s in check_transitions:
+		res.append(s)
+	for s in moove_transitions:
+		res.append(s)	
+	
+	return create_loop(res)
+
+# test_read_transition
+# this will generate states that will switch to Loop state when reading input machine alphabets
+# if c is found. Also moves RIGHT 3 times before doing the searching OR search current char.
+def test_read_transition(c) :
+	res = []
+	alphabets_without_c = range_without_c(sub_alphabet, c)
+
+	# prepare cond
+	cond = []
+	cond.append({
+		'read_char': c,
+		'to_state': ToState("Next", ""),
+		'action': Action("RIGHT")
+	})
+	cond_tostate = ToState("To_state", nmoove(3, Action("RIGHT"), name=f"{c}_transition_check_moove_")[0].name)
+	cond_action = Action("RIGHT")
+	for statename in alphabets_without_c :
+		cond_read = statename
+		cond.append({
+			'read_char': cond_read,
+			'to_state': cond_tostate,
+			'action': cond_action
+		})
+
+	check_transitions = if_func(cond, name=f"{c}_is_read_transition")
+	moove_transitions = nmoove(3, Action("RIGHT"), loop=True, name=f"{c}_transition_check_moove_")
+
+	# combine the states
+	res = []
+	for s in check_transitions:
+		res.append(s)
+	for s in moove_transitions:
+		res.append(s)	
+	
+	# loop here??
+	return res
+
+# find_transition
+# generates states to find the transition given a certain character in the input machine
+# this will generate branches?
+def find_transition() :
+	
+	# hey we have encountered a character in the input tape
+	# now we try to locate its transition function in registers
+	
+	# this function will take two arguments, the supposedly current read character and the current state
+	# of the input machine, and it will generate the transitions to set the state memory AFTER input char is read
+	# and call Next eventually when the correct memory is set based on the read character and the 
+	# current state.
+
+	# the return of this will be [switchTransitionForSt, [findStatesAndTransitions...]]
+	def store_states(rd, st):
+		res = []
+		go_to_transition = find_nchar(4, pipe, Action("RIGHT"), Action("RIGHT"))
+		find_trans = create_loop(join_states([test_state_transition(st), test_read_transition(rd)]))
+		final_unformatted = join_states([go_to_transition, find_trans])
+
+		# formatting function to format statenames and tostate values
+		def format_statenames(state): 
+			new_statename = f"st_{rd}_{st}_{state.name}"
+			new_transitions = []
+			for transition in state.transitions :
+				new_tostate_name = f"st_{rd}_{st}_{transition.to_state.value}"
+				if transition.to_state.type != "To_state":
+					new_tostate_name = ""
+				else :
+					if transition.to_state.value == "HALT" or transition.to_state.value == "Sub_undefined":
+						new_tostate_name = transition.to_state.value
+				new_transition = Transition(
+					transition.type,
+					transition.read_char,
+					ToState(transition.to_state.type, new_tostate_name),
+					transition.write,
+					transition.action
+				)
+				new_transitions.append(new_transition)
+			return State(new_statename, new_transitions)
+
+		final_fun = list(map(lambda state: format_statenames(state), final_unformatted))
+		
+		return [
+			Transition(
+				"Standart",
+				st,
+				ToState("To_state", final_fun[0].name),
+				Write("Copy", ""),
+				Action("RIGHT"),
+			),
+			final_fun
+		]
+	
+	# helper function to generate store_states for rd char via machine input 
+	# for all state ranges. The transitions generated here will run WHEN input char is read
+	# as this function wraps the store_states outside of rd.
+
+	# returns [switchTransitionForRd, [findStatesWithTransitions....]]
+	def store_read(rd) :
+		all_store_states = list(map(lambda st: store_states(rd, st), state_range))
+		state_find_transitions_aft_read = []
+		switch_transitions = []
+		find_states = []
+		res = []
+		for switch_find_pair in all_store_states:
+			switch_transition = switch_find_pair[0]
+			_find_states = switch_find_pair[1]
+			
+			switch_transitions.append(switch_transition)
+			for find_state in _find_states:
+				find_states.append(find_state)
+			# switch_statename = f"st{rd}st_switch"
+			# state_find_transitions_aft_read.append(State(switch_statename, [switch_transition]))
+			# for find_state in find_states:
+			# 	state_find_transitions_aft_read.append(find_state)
+		
+		state_find_transitions_aft_read.append(State(f"st{rd}st_switch", switch_transitions))
+		for find_state in find_states:
+				state_find_transitions_aft_read.append(find_state)
+		return [
+			Transition(
+				"Standart",
+				rd,
+				ToState("To_state", state_find_transitions_aft_read[0].name),
+				Write("Copy", ""),
+				Action("LEFT"),
+			),
+			state_find_transitions_aft_read
+		]
+	
+	all_store_reads = list(map(lambda rd: store_read(rd), sub_alphabet))
+	switch_transitions = []
+	find_states = []
+	res = []
+	for switch_find_pair in all_store_reads:
+		switch_transition = switch_find_pair[0]
+		_find_states = switch_find_pair[1]
+		
+		switch_transitions.append(switch_transition)
+		for find_state in _find_states:
+			find_states.append(find_state)
+
+	res.append(State("st_switch", switch_transitions))
+	for state in find_states:
+		res.append(state)
+	return res
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -573,8 +793,7 @@ def main(filepath):
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
 	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
-	# res = loop_before_use(res_store)
-	res = build_machine_init()
+	res = find_transition()
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])

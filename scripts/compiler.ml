@@ -23,6 +23,22 @@ type absfun = state list (* first state is an entry point for the next one *)
 type labsfun = absfun list
 (* type if_type = State of to_state | Function of absfun *)
 
+let print_cond cond = 
+	match cond with 
+	| (read_char, to_state, action) -> 
+		Format.printf "condread: %s, " read_char;
+		let to_state_str = match to_state with 
+		| To_state str -> str 
+		| Same -> "Same"
+		| Next -> "Next"
+		| Loop -> "Loop" in
+
+		let action_str = match action with
+		| Left -> "Left"
+		| Right -> "Right"
+		in
+
+		Format.printf "condto_state: %s, condaction: %s\n" to_state_str  action_str
 	
 let print_transition transition =
 	match transition with
@@ -447,7 +463,6 @@ let test_finals c =
 		(c, To_state "HALT", Right)::(pipe, Next, Right)::elselst
 	in
 	create_loop (if_func ~name:("is_final_" ^ c) is_final_cond)
-
 let test_state_transition c =
 	let else_alpha = range_without_c state_range c in
 	let is_state_transition =
@@ -482,7 +497,8 @@ let find_transition =
 		let go_to_transition = find_nchar 4 pipe Right Right in
 		let find_trans = create_loop @@ join_absfun [test_state_transition st; test_read_transition rd] in
 		let final_fun = fderiv rd st (join_absfun [go_to_transition; find_trans]) in
-		(Standart (st, To_state (get_entry final_fun), Copy, Right), final_fun)
+		let res = (Standart (st, To_state (get_entry final_fun), Copy, Right), final_fun) in
+		res
 	in
 	let store_read rd =
 		let store_state_fun =
@@ -491,6 +507,12 @@ let find_transition =
 		in
 		(Standart (rd, To_state (get_entry store_state_fun), Copy, Left), store_state_fun)
 	in
+	(* print_endline "==============================================WOOP";
+	print_transition (fst(store_read "A"));
+	print_absfun (snd (store_read "A") );
+	print_endline "==============================================WOOP"; *)
+	(* print_transition (fst(store_state "gay" "sex")); *)
+	(* print_absfun (snd (store_state "gay" "sex") ); *)
 	let (switch, flst) = List.unzip @@ List.map sub_alphabet store_read in
 	("st_switch", switch) :: List.concat flst
 (* (fun x -> if String.comparex ) @ [(c, Next), pipe, To_state ("Sub_undefined")] *)
@@ -654,6 +676,6 @@ let exec_machine =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
 	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
 	(* print_store_ret store_res; *)
-	let res = restruct_machine in
+	let res = find_transition in
 	print_endline "========================";
 	print_absfun res
