@@ -508,6 +508,7 @@ def build_machine_init():
 			),
 	]
 	
+	# TODO, make index global
 	actions_indexed = []
 	for index, action in enumerate(actions) :
 		new_action = []
@@ -751,6 +752,153 @@ def find_transition() :
 		res.append(state)
 	return res
 
+# moove_fun
+def moove_fun(c) :
+	res = []
+	# generates states to shift all symbols in this dir until end_char is found
+	def replic_tape(end_char, dir):
+		replic_res = []
+
+		# generate replic_entry state
+		copy_symbols = range_without_c(output_alphabet, c)
+		replic_transitions = list(map(lambda sym: Transition(
+			"Standart",
+			sym,
+			ToState("To_state", f"copy{sym}"),
+			Write("Copy", ""),
+			dir
+			), copy_symbols))
+		replic_res.append(State("replic_entry", replic_transitions))
+		
+		# generate copy states
+		for sym in copy_symbols:
+			copy_transitions = []
+			copy_transitions.append(Transition(
+				"Standart",
+				c,
+				ToState("Next", ""),
+				Write("Write", sym),
+				dir
+			))
+			for sym_sym in copy_symbols:
+				copy_transitions.append(Transition(
+				"Standart",
+				sym_sym,
+				ToState("To_state", f"copy{sym_sym}"),
+				Write("Write", sym),
+				dir
+			))
+			replic_res.append(State(f"copy{sym}", copy_transitions))
+		return replic_res
+	
+	# TODO: make idx global
+	# index actions
+	def index_actions(actions_noidx, init_idx):
+		actions_indexed = []
+		index = init_idx # hardcoded to match refrence
+		for action in actions_noidx :
+				new_action = []
+				for state in action:
+					new_transitions = []
+					for transition in state.transitions :
+						new_transition = transition
+						if transition.to_state.type == "To_state" :
+							new_transition = Transition(
+								transition.type,
+								transition.read_char,
+								ToState("To_state", f"{index}_{transition.to_state.value}"),
+								transition.write,
+								transition.action
+							)
+						new_transitions.append(new_transition)
+					new_state = State(f"{index}_{state.name}", new_transitions)
+					new_action.append(new_state)
+				index = index + 1
+				actions_indexed.append(new_action)
+		return actions_indexed
+
+	if c == "R":
+		if_right_end = join_states([
+			find_nchar(4, pipe, Action("LEFT"), Action("LEFT")),
+			join_store(
+				store(
+					sub_alphabet,
+					find_nchar(1, cursor, Action("RIGHT"), Action("RIGHT")),
+					(lambda c: arb_write(Action("LEFT"), c)),
+					Action("LEFT")
+					)
+				)
+		])
+		elselst = list(map(lambda x: {
+			'read_char': x,
+			'to_state': ToState("Next", ""),
+			'action': Action("LEFT")
+		}, sub_alphabet))
+		condlist = []
+		condlist.append({
+			'read_char': blank,
+			'to_state': ToState("To_state", if_right_end[0].name),
+			'action': Action("LEFT")
+		})
+		for cond in elselst:
+			condlist.append(cond)
+		is_right_end = []
+		is_right_end.append(if_func(condlist, name=f"{c}is_right_end")[0])
+		for state in if_right_end:
+			is_right_end.append(state)
+		actions_noidx = [
+			nmoove(1, Action("RIGHT")),
+			replic_tape(cursor, Action("LEFT")),
+			nmoove(2, Action("RIGHT")),
+			arb_write(Action("RIGHT"), cursor),
+			is_right_end
+		]
+		
+		res = join_states(index_actions(actions_noidx, 44)) # idx is hardcoded 
+	else:
+		if_left_end = join_states([
+			nmoove(1, Action("RIGHT")),
+			replic_tape(blank, Action("LEFT")),
+			find_nchar(1, pipe, Action("RIGHT"), Action("RIGHT")),
+			join_store(
+				store(
+					sub_alphabet,
+					find_nchar(5, pipe, Action("RIGHT"), Action("RIGHT")),
+					(lambda c: arb_write(Action("RIGHT"), c)),
+					Action("LEFT")
+					)
+				)
+		])
+		elselst = list(map(lambda x: {
+			'read_char': x,
+			'to_state': ToState("Next", ""),
+			'action': Action("LEFT")
+		}, sub_alphabet))
+		condlist = []
+		condlist.append({
+			'read_char': pipe,
+			'to_state': ToState("To_state", if_left_end[0].name),
+			'action': Action("RIGHT")
+		})
+		for cond in elselst:
+			condlist.append(cond)
+		is_left_end = []
+		is_left_end.append(if_func(condlist, name=f"{c}is_left_end")[0])
+		for state in if_left_end:
+			is_left_end.append(state)
+		actions_noidx = [
+			nmoove(1, Action("LEFT")),
+			is_left_end,
+			nmoove(1, Action("LEFT")),
+			replic_tape(cursor, Action("RIGHT")),
+			nmoove(2, Action("LEFT")),
+			arb_write(Action("RIGHT"), cursor)
+		]
+		
+		res = join_states(index_actions(actions_noidx, 49)) # idx is hardcoded 
+
+	# replic_tape("A", Action("LEFT"))
+	return res
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -793,7 +941,7 @@ def main(filepath):
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
 	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
-	res = find_transition()
+	res = moove_fun('R')
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])

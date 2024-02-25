@@ -1,0 +1,292 @@
+{ 44_1moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 45_replic_entry, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 45_replic_entry, transitions: 
+A, to_state: 45_copyA, write: <Copy>, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: <Copy>, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: <Copy>, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: <Copy>, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: <Copy>, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: <Copy>, action: LEFT, type: Standart
+., to_state: 45_copy., write: <Copy>, action: LEFT, type: Standart
++, to_state: 45_copy+, write: <Copy>, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: <Copy>, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: <Copy>, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: <Copy>, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: <Copy>, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: <Copy>, action: LEFT, type: Standart
+}
+{ 45_copyA, transitions: 
+R, to_state: 46_2moove_RIGHT, write: A, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: A, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: A, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: A, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: A, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: A, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: A, action: LEFT, type: Standart
+., to_state: 45_copy., write: A, action: LEFT, type: Standart
++, to_state: 45_copy+, write: A, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: A, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: A, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: A, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: A, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: A, action: LEFT, type: Standart
+}
+{ 45_copyB, transitions: 
+R, to_state: 46_2moove_RIGHT, write: B, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: B, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: B, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: B, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: B, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: B, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: B, action: LEFT, type: Standart
+., to_state: 45_copy., write: B, action: LEFT, type: Standart
++, to_state: 45_copy+, write: B, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: B, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: B, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: B, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: B, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: B, action: LEFT, type: Standart
+}
+{ 45_copyC, transitions: 
+R, to_state: 46_2moove_RIGHT, write: C, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: C, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: C, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: C, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: C, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: C, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: C, action: LEFT, type: Standart
+., to_state: 45_copy., write: C, action: LEFT, type: Standart
++, to_state: 45_copy+, write: C, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: C, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: C, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: C, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: C, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: C, action: LEFT, type: Standart
+}
+{ 45_copyD, transitions: 
+R, to_state: 46_2moove_RIGHT, write: D, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: D, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: D, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: D, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: D, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: D, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: D, action: LEFT, type: Standart
+., to_state: 45_copy., write: D, action: LEFT, type: Standart
++, to_state: 45_copy+, write: D, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: D, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: D, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: D, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: D, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: D, action: LEFT, type: Standart
+}
+{ 45_copyE, transitions: 
+R, to_state: 46_2moove_RIGHT, write: E, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: E, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: E, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: E, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: E, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: E, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: E, action: LEFT, type: Standart
+., to_state: 45_copy., write: E, action: LEFT, type: Standart
++, to_state: 45_copy+, write: E, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: E, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: E, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: E, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: E, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: E, action: LEFT, type: Standart
+}
+{ 45_copy1, transitions: 
+R, to_state: 46_2moove_RIGHT, write: 1, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: 1, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: 1, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: 1, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: 1, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: 1, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: 1, action: LEFT, type: Standart
+., to_state: 45_copy., write: 1, action: LEFT, type: Standart
++, to_state: 45_copy+, write: 1, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: 1, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: 1, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: 1, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: 1, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: 1, action: LEFT, type: Standart
+}
+{ 45_copy., transitions: 
+R, to_state: 46_2moove_RIGHT, write: ., action: LEFT, type: Standart
+A, to_state: 45_copyA, write: ., action: LEFT, type: Standart
+B, to_state: 45_copyB, write: ., action: LEFT, type: Standart
+C, to_state: 45_copyC, write: ., action: LEFT, type: Standart
+D, to_state: 45_copyD, write: ., action: LEFT, type: Standart
+E, to_state: 45_copyE, write: ., action: LEFT, type: Standart
+1, to_state: 45_copy1, write: ., action: LEFT, type: Standart
+., to_state: 45_copy., write: ., action: LEFT, type: Standart
++, to_state: 45_copy+, write: ., action: LEFT, type: Standart
+=, to_state: 45_copy=, write: ., action: LEFT, type: Standart
+_, to_state: 45_copy_, write: ., action: LEFT, type: Standart
+|, to_state: 45_copy|, write: ., action: LEFT, type: Standart
+L, to_state: 45_copyL, write: ., action: LEFT, type: Standart
+~, to_state: 45_copy~, write: ., action: LEFT, type: Standart
+}
+{ 45_copy+, transitions: 
+R, to_state: 46_2moove_RIGHT, write: +, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: +, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: +, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: +, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: +, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: +, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: +, action: LEFT, type: Standart
+., to_state: 45_copy., write: +, action: LEFT, type: Standart
++, to_state: 45_copy+, write: +, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: +, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: +, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: +, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: +, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: +, action: LEFT, type: Standart
+}
+{ 45_copy=, transitions: 
+R, to_state: 46_2moove_RIGHT, write: =, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: =, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: =, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: =, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: =, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: =, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: =, action: LEFT, type: Standart
+., to_state: 45_copy., write: =, action: LEFT, type: Standart
++, to_state: 45_copy+, write: =, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: =, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: =, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: =, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: =, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: =, action: LEFT, type: Standart
+}
+{ 45_copy_, transitions: 
+R, to_state: 46_2moove_RIGHT, write: _, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: _, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: _, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: _, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: _, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: _, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: _, action: LEFT, type: Standart
+., to_state: 45_copy., write: _, action: LEFT, type: Standart
++, to_state: 45_copy+, write: _, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: _, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: _, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: _, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: _, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: _, action: LEFT, type: Standart
+}
+{ 45_copy|, transitions: 
+R, to_state: 46_2moove_RIGHT, write: |, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: |, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: |, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: |, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: |, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: |, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: |, action: LEFT, type: Standart
+., to_state: 45_copy., write: |, action: LEFT, type: Standart
++, to_state: 45_copy+, write: |, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: |, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: |, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: |, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: |, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: |, action: LEFT, type: Standart
+}
+{ 45_copyL, transitions: 
+R, to_state: 46_2moove_RIGHT, write: L, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: L, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: L, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: L, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: L, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: L, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: L, action: LEFT, type: Standart
+., to_state: 45_copy., write: L, action: LEFT, type: Standart
++, to_state: 45_copy+, write: L, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: L, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: L, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: L, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: L, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: L, action: LEFT, type: Standart
+}
+{ 45_copy~, transitions: 
+R, to_state: 46_2moove_RIGHT, write: ~, action: LEFT, type: Standart
+A, to_state: 45_copyA, write: ~, action: LEFT, type: Standart
+B, to_state: 45_copyB, write: ~, action: LEFT, type: Standart
+C, to_state: 45_copyC, write: ~, action: LEFT, type: Standart
+D, to_state: 45_copyD, write: ~, action: LEFT, type: Standart
+E, to_state: 45_copyE, write: ~, action: LEFT, type: Standart
+1, to_state: 45_copy1, write: ~, action: LEFT, type: Standart
+., to_state: 45_copy., write: ~, action: LEFT, type: Standart
++, to_state: 45_copy+, write: ~, action: LEFT, type: Standart
+=, to_state: 45_copy=, write: ~, action: LEFT, type: Standart
+_, to_state: 45_copy_, write: ~, action: LEFT, type: Standart
+|, to_state: 45_copy|, write: ~, action: LEFT, type: Standart
+L, to_state: 45_copyL, write: ~, action: LEFT, type: Standart
+~, to_state: 45_copy~, write: ~, action: LEFT, type: Standart
+}
+{ 46_2moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 46_1moove_RIGHT, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 46_1moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 47_write__, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 47_write__, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 48_Ris_right_end, write: _, action: RIGHT, type: Multiple
+}
+{ 48_Ris_right_end, transitions: 
+~, to_state: 48_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+1, to_state: Next, write: <Copy>, action: LEFT, type: Standart
+., to_state: Next, write: <Copy>, action: LEFT, type: Standart
++, to_state: Next, write: <Copy>, action: LEFT, type: Standart
+=, to_state: Next, write: <Copy>, action: LEFT, type: Standart
+}
+{ 48_Lfind4|, transitions: 
+|, to_state: 48_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ 48_Lfind3|, transitions: 
+|, to_state: 48_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ 48_Lfind2|, transitions: 
+|, to_state: 48_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ 48_Lfind1|, transitions: 
+|, to_state: 48_st_switch, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ 48_st_switch, transitions: 
+1, to_state: 48_st_1_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+., to_state: 48_st_._Rfind1_, write: <Copy>, action: LEFT, type: Standart
++, to_state: 48_st_+_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+=, to_state: 48_st_=_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+}
+{ 48_st_1_Rfind1_, transitions: 
+_, to_state: 48_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 48_extract_1_write_1, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: 1, action: LEFT, type: Multiple
+}
+{ 48_st_._Rfind1_, transitions: 
+_, to_state: 48_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 48_extract_._write_., transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: ., action: LEFT, type: Multiple
+}
+{ 48_st_+_Rfind1_, transitions: 
+_, to_state: 48_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 48_extract_+_write_+, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: +, action: LEFT, type: Multiple
+}
+{ 48_st_=_Rfind1_, transitions: 
+_, to_state: 48_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ 48_extract_=_write_=, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: =, action: LEFT, type: Multiple
+}

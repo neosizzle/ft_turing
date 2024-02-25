@@ -260,7 +260,9 @@ let join_absfun (f : labsfun) =
 		| (_ as other) -> other
 	in List.concat @@ loop f
 
+(*global step coutner*)
 let ( @< ) f1 f2 = add_absfun f1 f2
+(* let ( @< ) f1 f2 = List.append f1 [f2] *)
 
 (* ("<len>moove_<dir>", [x | x is transitions inside <len>moove_<dir>]) *)
 let nmoove ?(loop = false) ?(name = "moove_") len action =
@@ -574,6 +576,9 @@ let moove_fun c =
 			nmoove 2 Left;
 			write_c Right cursor;
 		] in
+		(* print_endline "==============================WOOP=======";
+		print_labsfun (flst);
+		print_endline "==============================WOOP======="; *)
 		join_absfun @@ List.fold flst ~init:[] ~f:(@<)
 	in
  	if (c = "R") then
@@ -676,6 +681,6 @@ let exec_machine =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
 	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
 	(* print_store_ret store_res; *)
-	let res = find_transition in
+	let res = moove_fun "R" in
 	print_endline "========================";
 	print_absfun res
