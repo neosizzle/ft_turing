@@ -760,22 +760,22 @@ def moove_fun(c) :
 		replic_res = []
 
 		# generate replic_entry state
-		copy_symbols = range_without_c(output_alphabet, c)
+		copy_symbols = range_without_c(output_alphabet, end_char)
 		replic_transitions = list(map(lambda sym: Transition(
 			"Standart",
 			sym,
 			ToState("To_state", f"copy{sym}"),
 			Write("Copy", ""),
 			dir
-			), copy_symbols))
+			), range_without_c(output_alphabet, end_char)))
 		replic_res.append(State("replic_entry", replic_transitions))
-		
+
 		# generate copy states
 		for sym in copy_symbols:
 			copy_transitions = []
 			copy_transitions.append(Transition(
 				"Standart",
-				c,
+				end_char,
 				ToState("Next", ""),
 				Write("Write", sym),
 				dir
@@ -790,7 +790,7 @@ def moove_fun(c) :
 			))
 			replic_res.append(State(f"copy{sym}", copy_transitions))
 		return replic_res
-	
+
 	# TODO: make idx global
 	# index actions
 	def index_actions(actions_noidx, init_idx):
@@ -854,7 +854,7 @@ def moove_fun(c) :
 			is_right_end
 		]
 		
-		res = join_states(index_actions(actions_noidx, 44)) # idx is hardcoded 
+		res = join_states(index_actions(actions_noidx, 24)) # idx is hardcoded 
 	else:
 		if_left_end = join_states([
 			nmoove(1, Action("RIGHT")),
@@ -872,13 +872,13 @@ def moove_fun(c) :
 		elselst = list(map(lambda x: {
 			'read_char': x,
 			'to_state': ToState("Next", ""),
-			'action': Action("LEFT")
+			'action': Action("RIGHT")
 		}, sub_alphabet))
 		condlist = []
 		condlist.append({
 			'read_char': pipe,
 			'to_state': ToState("To_state", if_left_end[0].name),
-			'action': Action("RIGHT")
+			'action': Action("LEFT")
 		})
 		for cond in elselst:
 			condlist.append(cond)
@@ -895,10 +895,35 @@ def moove_fun(c) :
 			arb_write(Action("RIGHT"), cursor)
 		]
 		
-		res = join_states(index_actions(actions_noidx, 49)) # idx is hardcoded 
+		res = join_states(index_actions(actions_noidx, 18)) # idx is hardcoded 
 
-	# replic_tape("A", Action("LEFT"))
 	return res
+
+# exec_transition
+# generates states that stores next state in register, stores write char in tape
+# and stores movement of cursor?
+def exec_transition():
+	def write_fun(c):
+		return join_states([find_nchar(1, cursor, Action("RIGHT"), Action("RIGHT")), arb_write(Action("LEFT"), c)])
+	store_next = join_store(store(
+		state_range,
+		join_states([find_nchar(4, pipe, Action("LEFT"), Action("LEFT")), nmoove(1, Action("LEFT"))]),
+		(lambda c: arb_write(Action("RIGHT"), c)),
+		Action("LEFT")
+	))
+	store_write = join_store(store(
+		sub_alphabet,
+		store_next,
+		(lambda c: write_fun(c)),
+		Action("LEFT")
+	))
+	return join_store(store(
+		["L", "R"],
+		store_write,
+		(lambda c: moove_fun(c)),
+		Action("LEFT")
+	))
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -941,7 +966,7 @@ def main(filepath):
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
 	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
-	res = moove_fun('R')
+	res = exec_transition()
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])

@@ -1,292 +1,1873 @@
-{ 44_1moove_RIGHT, transitions: 
-['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 45_replic_entry, write: <Copy>, action: RIGHT, type: Multiple
+{ st_switch, transitions: 
+L, to_state: st_L_st_switch, write: <Copy>, action: LEFT, type: Standart
+R, to_state: st_R_st_switch, write: <Copy>, action: LEFT, type: Standart
 }
-{ 45_replic_entry, transitions: 
-A, to_state: 45_copyA, write: <Copy>, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: <Copy>, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: <Copy>, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: <Copy>, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: <Copy>, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: <Copy>, action: LEFT, type: Standart
-., to_state: 45_copy., write: <Copy>, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: <Copy>, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: <Copy>, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: <Copy>, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: <Copy>, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: <Copy>, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: <Copy>, action: LEFT, type: Standart
+{ st_L_st_switch, transitions: 
+1, to_state: st_L_st_1_st_switch, write: <Copy>, action: LEFT, type: Standart
+., to_state: st_L_st_._st_switch, write: <Copy>, action: LEFT, type: Standart
++, to_state: st_L_st_+_st_switch, write: <Copy>, action: LEFT, type: Standart
+=, to_state: st_L_st_=_st_switch, write: <Copy>, action: LEFT, type: Standart
 }
-{ 45_copyA, transitions: 
-R, to_state: 46_2moove_RIGHT, write: A, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: A, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: A, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: A, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: A, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: A, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: A, action: LEFT, type: Standart
-., to_state: 45_copy., write: A, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: A, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: A, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: A, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: A, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: A, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: A, action: LEFT, type: Standart
+{ st_L_st_1_st_switch, transitions: 
+A, to_state: st_L_st_1_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_L_st_1_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_L_st_1_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_L_st_1_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_L_st_1_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
 }
-{ 45_copyB, transitions: 
-R, to_state: 46_2moove_RIGHT, write: B, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: B, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: B, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: B, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: B, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: B, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: B, action: LEFT, type: Standart
-., to_state: 45_copy., write: B, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: B, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: B, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: B, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: B, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: B, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: B, action: LEFT, type: Standart
+{ st_L_st_1_st_A_Lfind4|, transitions: 
+|, to_state: st_L_st_1_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copyC, transitions: 
-R, to_state: 46_2moove_RIGHT, write: C, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: C, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: C, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: C, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: C, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: C, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: C, action: LEFT, type: Standart
-., to_state: 45_copy., write: C, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: C, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: C, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: C, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: C, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: C, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: C, action: LEFT, type: Standart
+{ st_L_st_1_st_A_Lfind3|, transitions: 
+|, to_state: st_L_st_1_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copyD, transitions: 
-R, to_state: 46_2moove_RIGHT, write: D, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: D, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: D, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: D, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: D, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: D, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: D, action: LEFT, type: Standart
-., to_state: 45_copy., write: D, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: D, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: D, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: D, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: D, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: D, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: D, action: LEFT, type: Standart
+{ st_L_st_1_st_A_Lfind2|, transitions: 
+|, to_state: st_L_st_1_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copyE, transitions: 
-R, to_state: 46_2moove_RIGHT, write: E, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: E, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: E, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: E, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: E, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: E, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: E, action: LEFT, type: Standart
-., to_state: 45_copy., write: E, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: E, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: E, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: E, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: E, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: E, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: E, action: LEFT, type: Standart
+{ st_L_st_1_st_A_Lfind1|, transitions: 
+|, to_state: st_L_st_1_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy1, transitions: 
-R, to_state: 46_2moove_RIGHT, write: 1, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: 1, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: 1, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: 1, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: 1, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: 1, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: 1, action: LEFT, type: Standart
-., to_state: 45_copy., write: 1, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: 1, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: 1, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: 1, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: 1, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: 1, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: 1, action: LEFT, type: Standart
+{ st_L_st_1_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_1_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy., transitions: 
-R, to_state: 46_2moove_RIGHT, write: ., action: LEFT, type: Standart
-A, to_state: 45_copyA, write: ., action: LEFT, type: Standart
-B, to_state: 45_copyB, write: ., action: LEFT, type: Standart
-C, to_state: 45_copyC, write: ., action: LEFT, type: Standart
-D, to_state: 45_copyD, write: ., action: LEFT, type: Standart
-E, to_state: 45_copyE, write: ., action: LEFT, type: Standart
-1, to_state: 45_copy1, write: ., action: LEFT, type: Standart
-., to_state: 45_copy., write: ., action: LEFT, type: Standart
-+, to_state: 45_copy+, write: ., action: LEFT, type: Standart
-=, to_state: 45_copy=, write: ., action: LEFT, type: Standart
-_, to_state: 45_copy_, write: ., action: LEFT, type: Standart
-|, to_state: 45_copy|, write: ., action: LEFT, type: Standart
-L, to_state: 45_copyL, write: ., action: LEFT, type: Standart
-~, to_state: 45_copy~, write: ., action: LEFT, type: Standart
+{ st_L_st_1_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_1_Rfind1_, write: A, action: RIGHT, type: Multiple
 }
-{ 45_copy+, transitions: 
-R, to_state: 46_2moove_RIGHT, write: +, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: +, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: +, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: +, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: +, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: +, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: +, action: LEFT, type: Standart
-., to_state: 45_copy., write: +, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: +, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: +, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: +, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: +, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: +, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: +, action: LEFT, type: Standart
+{ st_L_st_1_st_B_Lfind4|, transitions: 
+|, to_state: st_L_st_1_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy=, transitions: 
-R, to_state: 46_2moove_RIGHT, write: =, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: =, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: =, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: =, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: =, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: =, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: =, action: LEFT, type: Standart
-., to_state: 45_copy., write: =, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: =, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: =, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: =, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: =, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: =, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: =, action: LEFT, type: Standart
+{ st_L_st_1_st_B_Lfind3|, transitions: 
+|, to_state: st_L_st_1_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy_, transitions: 
-R, to_state: 46_2moove_RIGHT, write: _, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: _, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: _, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: _, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: _, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: _, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: _, action: LEFT, type: Standart
-., to_state: 45_copy., write: _, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: _, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: _, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: _, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: _, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: _, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: _, action: LEFT, type: Standart
+{ st_L_st_1_st_B_Lfind2|, transitions: 
+|, to_state: st_L_st_1_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy|, transitions: 
-R, to_state: 46_2moove_RIGHT, write: |, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: |, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: |, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: |, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: |, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: |, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: |, action: LEFT, type: Standart
-., to_state: 45_copy., write: |, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: |, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: |, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: |, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: |, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: |, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: |, action: LEFT, type: Standart
+{ st_L_st_1_st_B_Lfind1|, transitions: 
+|, to_state: st_L_st_1_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copyL, transitions: 
-R, to_state: 46_2moove_RIGHT, write: L, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: L, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: L, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: L, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: L, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: L, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: L, action: LEFT, type: Standart
-., to_state: 45_copy., write: L, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: L, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: L, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: L, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: L, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: L, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: L, action: LEFT, type: Standart
+{ st_L_st_1_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_1_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 45_copy~, transitions: 
-R, to_state: 46_2moove_RIGHT, write: ~, action: LEFT, type: Standart
-A, to_state: 45_copyA, write: ~, action: LEFT, type: Standart
-B, to_state: 45_copyB, write: ~, action: LEFT, type: Standart
-C, to_state: 45_copyC, write: ~, action: LEFT, type: Standart
-D, to_state: 45_copyD, write: ~, action: LEFT, type: Standart
-E, to_state: 45_copyE, write: ~, action: LEFT, type: Standart
-1, to_state: 45_copy1, write: ~, action: LEFT, type: Standart
-., to_state: 45_copy., write: ~, action: LEFT, type: Standart
-+, to_state: 45_copy+, write: ~, action: LEFT, type: Standart
-=, to_state: 45_copy=, write: ~, action: LEFT, type: Standart
-_, to_state: 45_copy_, write: ~, action: LEFT, type: Standart
-|, to_state: 45_copy|, write: ~, action: LEFT, type: Standart
-L, to_state: 45_copyL, write: ~, action: LEFT, type: Standart
-~, to_state: 45_copy~, write: ~, action: LEFT, type: Standart
+{ st_L_st_1_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_1_Rfind1_, write: B, action: RIGHT, type: Multiple
 }
-{ 46_2moove_RIGHT, transitions: 
-['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 46_1moove_RIGHT, write: <Copy>, action: RIGHT, type: Multiple
+{ st_L_st_1_st_C_Lfind4|, transitions: 
+|, to_state: st_L_st_1_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 46_1moove_RIGHT, transitions: 
-['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 47_write__, write: <Copy>, action: RIGHT, type: Multiple
+{ st_L_st_1_st_C_Lfind3|, transitions: 
+|, to_state: st_L_st_1_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 47_write__, transitions: 
-['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: 48_Ris_right_end, write: _, action: RIGHT, type: Multiple
+{ st_L_st_1_st_C_Lfind2|, transitions: 
+|, to_state: st_L_st_1_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 48_Ris_right_end, transitions: 
-~, to_state: 48_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+{ st_L_st_1_st_C_Lfind1|, transitions: 
+|, to_state: st_L_st_1_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_1_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_1_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_L_st_1_st_D_Lfind4|, transitions: 
+|, to_state: st_L_st_1_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_D_Lfind3|, transitions: 
+|, to_state: st_L_st_1_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_D_Lfind2|, transitions: 
+|, to_state: st_L_st_1_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_D_Lfind1|, transitions: 
+|, to_state: st_L_st_1_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_1_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_1_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_L_st_1_st_E_Lfind4|, transitions: 
+|, to_state: st_L_st_1_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_E_Lfind3|, transitions: 
+|, to_state: st_L_st_1_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_E_Lfind2|, transitions: 
+|, to_state: st_L_st_1_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_E_Lfind1|, transitions: 
+|, to_state: st_L_st_1_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_1_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_1_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_1_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_L_extract_1_Rfind1_, transitions: 
+_, to_state: st_L_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_L_extract_1_write_1, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_18_1moove_LEFT, write: 1, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_switch, transitions: 
+A, to_state: st_L_st_._st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_L_st_._st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_L_st_._st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_L_st_._st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_L_st_._st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_L_st_._st_A_Lfind4|, transitions: 
+|, to_state: st_L_st_._st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_A_Lfind3|, transitions: 
+|, to_state: st_L_st_._st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_A_Lfind2|, transitions: 
+|, to_state: st_L_st_._st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_A_Lfind1|, transitions: 
+|, to_state: st_L_st_._st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_._extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_._Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_L_st_._st_B_Lfind4|, transitions: 
+|, to_state: st_L_st_._st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_B_Lfind3|, transitions: 
+|, to_state: st_L_st_._st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_B_Lfind2|, transitions: 
+|, to_state: st_L_st_._st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_B_Lfind1|, transitions: 
+|, to_state: st_L_st_._st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_._extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_._Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_L_st_._st_C_Lfind4|, transitions: 
+|, to_state: st_L_st_._st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_C_Lfind3|, transitions: 
+|, to_state: st_L_st_._st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_C_Lfind2|, transitions: 
+|, to_state: st_L_st_._st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_C_Lfind1|, transitions: 
+|, to_state: st_L_st_._st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_._extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_._Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_L_st_._st_D_Lfind4|, transitions: 
+|, to_state: st_L_st_._st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_D_Lfind3|, transitions: 
+|, to_state: st_L_st_._st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_D_Lfind2|, transitions: 
+|, to_state: st_L_st_._st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_D_Lfind1|, transitions: 
+|, to_state: st_L_st_._st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_._extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_._Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_L_st_._st_E_Lfind4|, transitions: 
+|, to_state: st_L_st_._st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_E_Lfind3|, transitions: 
+|, to_state: st_L_st_._st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_E_Lfind2|, transitions: 
+|, to_state: st_L_st_._st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_E_Lfind1|, transitions: 
+|, to_state: st_L_st_._st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_._extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_._extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_._Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_L_extract_._Rfind1_, transitions: 
+_, to_state: st_L_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_L_extract_._write_., transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_18_1moove_LEFT, write: ., action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_switch, transitions: 
+A, to_state: st_L_st_+_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_L_st_+_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_L_st_+_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_L_st_+_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_L_st_+_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_L_st_+_st_A_Lfind4|, transitions: 
+|, to_state: st_L_st_+_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_A_Lfind3|, transitions: 
+|, to_state: st_L_st_+_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_A_Lfind2|, transitions: 
+|, to_state: st_L_st_+_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_A_Lfind1|, transitions: 
+|, to_state: st_L_st_+_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_+_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_+_Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_L_st_+_st_B_Lfind4|, transitions: 
+|, to_state: st_L_st_+_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_B_Lfind3|, transitions: 
+|, to_state: st_L_st_+_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_B_Lfind2|, transitions: 
+|, to_state: st_L_st_+_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_B_Lfind1|, transitions: 
+|, to_state: st_L_st_+_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_+_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_+_Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_L_st_+_st_C_Lfind4|, transitions: 
+|, to_state: st_L_st_+_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_C_Lfind3|, transitions: 
+|, to_state: st_L_st_+_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_C_Lfind2|, transitions: 
+|, to_state: st_L_st_+_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_C_Lfind1|, transitions: 
+|, to_state: st_L_st_+_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_+_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_+_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_L_st_+_st_D_Lfind4|, transitions: 
+|, to_state: st_L_st_+_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_D_Lfind3|, transitions: 
+|, to_state: st_L_st_+_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_D_Lfind2|, transitions: 
+|, to_state: st_L_st_+_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_D_Lfind1|, transitions: 
+|, to_state: st_L_st_+_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_+_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_+_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_L_st_+_st_E_Lfind4|, transitions: 
+|, to_state: st_L_st_+_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_E_Lfind3|, transitions: 
+|, to_state: st_L_st_+_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_E_Lfind2|, transitions: 
+|, to_state: st_L_st_+_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_E_Lfind1|, transitions: 
+|, to_state: st_L_st_+_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_+_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_+_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_+_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_L_extract_+_Rfind1_, transitions: 
+_, to_state: st_L_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_L_extract_+_write_+, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_18_1moove_LEFT, write: +, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_switch, transitions: 
+A, to_state: st_L_st_=_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_L_st_=_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_L_st_=_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_L_st_=_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_L_st_=_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_L_st_=_st_A_Lfind4|, transitions: 
+|, to_state: st_L_st_=_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_A_Lfind3|, transitions: 
+|, to_state: st_L_st_=_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_A_Lfind2|, transitions: 
+|, to_state: st_L_st_=_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_A_Lfind1|, transitions: 
+|, to_state: st_L_st_=_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_=_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_=_Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_L_st_=_st_B_Lfind4|, transitions: 
+|, to_state: st_L_st_=_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_B_Lfind3|, transitions: 
+|, to_state: st_L_st_=_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_B_Lfind2|, transitions: 
+|, to_state: st_L_st_=_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_B_Lfind1|, transitions: 
+|, to_state: st_L_st_=_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_=_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_=_Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_L_st_=_st_C_Lfind4|, transitions: 
+|, to_state: st_L_st_=_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_C_Lfind3|, transitions: 
+|, to_state: st_L_st_=_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_C_Lfind2|, transitions: 
+|, to_state: st_L_st_=_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_C_Lfind1|, transitions: 
+|, to_state: st_L_st_=_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_=_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_=_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_L_st_=_st_D_Lfind4|, transitions: 
+|, to_state: st_L_st_=_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_D_Lfind3|, transitions: 
+|, to_state: st_L_st_=_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_D_Lfind2|, transitions: 
+|, to_state: st_L_st_=_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_D_Lfind1|, transitions: 
+|, to_state: st_L_st_=_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_=_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_=_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_L_st_=_st_E_Lfind4|, transitions: 
+|, to_state: st_L_st_=_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_E_Lfind3|, transitions: 
+|, to_state: st_L_st_=_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_E_Lfind2|, transitions: 
+|, to_state: st_L_st_=_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_E_Lfind1|, transitions: 
+|, to_state: st_L_st_=_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_st_=_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_L_st_=_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_L_extract_=_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_L_extract_=_Rfind1_, transitions: 
+_, to_state: st_L_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_L_extract_=_write_=, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_18_1moove_LEFT, write: =, action: LEFT, type: Multiple
+}
+{ extract_L_18_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_19_Lis_left_end, write: <Copy>, action: LEFT, type: Multiple
+}
+{ extract_L_19_Lis_left_end, transitions: 
+|, to_state: extract_L_19_1moove_RIGHT, write: <Copy>, action: LEFT, type: Standart
+1, to_state: extract_L_20_1moove_LEFT, write: <Copy>, action: RIGHT, type: Standart
+., to_state: extract_L_20_1moove_LEFT, write: <Copy>, action: RIGHT, type: Standart
++, to_state: extract_L_20_1moove_LEFT, write: <Copy>, action: RIGHT, type: Standart
+=, to_state: extract_L_20_1moove_LEFT, write: <Copy>, action: RIGHT, type: Standart
+}
+{ extract_L_19_1moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_19_replic_entry, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_replic_entry, transitions: 
+A, to_state: extract_L_19_copyA, write: <Copy>, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: <Copy>, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: <Copy>, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: <Copy>, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: <Copy>, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: <Copy>, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: <Copy>, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: <Copy>, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: <Copy>, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: <Copy>, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: <Copy>, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: <Copy>, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: <Copy>, action: LEFT, type: Standart
+}
+{ extract_L_19_copyA, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: A, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: A, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: A, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: A, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: A, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: A, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: A, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: A, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: A, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: A, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: A, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: A, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: A, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: A, action: LEFT, type: Standart
+}
+{ extract_L_19_copyB, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: B, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: B, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: B, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: B, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: B, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: B, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: B, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: B, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: B, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: B, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: B, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: B, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: B, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: B, action: LEFT, type: Standart
+}
+{ extract_L_19_copyC, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: C, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: C, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: C, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: C, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: C, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: C, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: C, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: C, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: C, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: C, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: C, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: C, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: C, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: C, action: LEFT, type: Standart
+}
+{ extract_L_19_copyD, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: D, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: D, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: D, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: D, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: D, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: D, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: D, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: D, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: D, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: D, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: D, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: D, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: D, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: D, action: LEFT, type: Standart
+}
+{ extract_L_19_copyE, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: E, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: E, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: E, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: E, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: E, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: E, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: E, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: E, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: E, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: E, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: E, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: E, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: E, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: E, action: LEFT, type: Standart
+}
+{ extract_L_19_copy1, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: 1, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: 1, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: 1, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: 1, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: 1, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: 1, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: 1, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: 1, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: 1, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: 1, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: 1, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: 1, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: 1, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: 1, action: LEFT, type: Standart
+}
+{ extract_L_19_copy., transitions: 
+~, to_state: extract_L_19_Rfind1|, write: ., action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: ., action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: ., action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: ., action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: ., action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: ., action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: ., action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: ., action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: ., action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: ., action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: ., action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: ., action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: ., action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: ., action: LEFT, type: Standart
+}
+{ extract_L_19_copy+, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: +, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: +, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: +, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: +, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: +, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: +, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: +, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: +, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: +, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: +, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: +, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: +, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: +, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: +, action: LEFT, type: Standart
+}
+{ extract_L_19_copy=, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: =, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: =, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: =, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: =, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: =, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: =, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: =, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: =, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: =, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: =, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: =, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: =, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: =, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: =, action: LEFT, type: Standart
+}
+{ extract_L_19_copy_, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: _, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: _, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: _, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: _, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: _, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: _, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: _, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: _, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: _, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: _, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: _, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: _, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: _, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: _, action: LEFT, type: Standart
+}
+{ extract_L_19_copy|, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: |, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: |, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: |, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: |, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: |, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: |, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: |, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: |, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: |, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: |, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: |, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: |, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: |, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: |, action: LEFT, type: Standart
+}
+{ extract_L_19_copyL, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: L, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: L, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: L, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: L, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: L, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: L, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: L, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: L, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: L, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: L, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: L, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: L, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: L, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: L, action: LEFT, type: Standart
+}
+{ extract_L_19_copyR, transitions: 
+~, to_state: extract_L_19_Rfind1|, write: R, action: LEFT, type: Standart
+A, to_state: extract_L_19_copyA, write: R, action: LEFT, type: Standart
+B, to_state: extract_L_19_copyB, write: R, action: LEFT, type: Standart
+C, to_state: extract_L_19_copyC, write: R, action: LEFT, type: Standart
+D, to_state: extract_L_19_copyD, write: R, action: LEFT, type: Standart
+E, to_state: extract_L_19_copyE, write: R, action: LEFT, type: Standart
+1, to_state: extract_L_19_copy1, write: R, action: LEFT, type: Standart
+., to_state: extract_L_19_copy., write: R, action: LEFT, type: Standart
++, to_state: extract_L_19_copy+, write: R, action: LEFT, type: Standart
+=, to_state: extract_L_19_copy=, write: R, action: LEFT, type: Standart
+_, to_state: extract_L_19_copy_, write: R, action: LEFT, type: Standart
+|, to_state: extract_L_19_copy|, write: R, action: LEFT, type: Standart
+L, to_state: extract_L_19_copyL, write: R, action: LEFT, type: Standart
+R, to_state: extract_L_19_copyR, write: R, action: LEFT, type: Standart
+}
+{ extract_L_19_Rfind1|, transitions: 
+|, to_state: extract_L_19_st_switch, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_switch, transitions: 
+1, to_state: extract_L_19_st_1_Rfind5|, write: <Copy>, action: LEFT, type: Standart
+., to_state: extract_L_19_st_._Rfind5|, write: <Copy>, action: LEFT, type: Standart
++, to_state: extract_L_19_st_+_Rfind5|, write: <Copy>, action: LEFT, type: Standart
+=, to_state: extract_L_19_st_=_Rfind5|, write: <Copy>, action: LEFT, type: Standart
+}
+{ extract_L_19_st_1_Rfind5|, transitions: 
+|, to_state: extract_L_19_st_1_Rfind4|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_1_Rfind4|, transitions: 
+|, to_state: extract_L_19_st_1_Rfind3|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_1_Rfind3|, transitions: 
+|, to_state: extract_L_19_st_1_Rfind2|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_1_Rfind2|, transitions: 
+|, to_state: extract_L_19_st_1_Rfind1|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_1_Rfind1|, transitions: 
+|, to_state: extract_L_19_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_extract_1_write_1, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_20_1moove_LEFT, write: 1, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_._Rfind5|, transitions: 
+|, to_state: extract_L_19_st_._Rfind4|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_._Rfind4|, transitions: 
+|, to_state: extract_L_19_st_._Rfind3|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_._Rfind3|, transitions: 
+|, to_state: extract_L_19_st_._Rfind2|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_._Rfind2|, transitions: 
+|, to_state: extract_L_19_st_._Rfind1|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_._Rfind1|, transitions: 
+|, to_state: extract_L_19_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_extract_._write_., transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_20_1moove_LEFT, write: ., action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_+_Rfind5|, transitions: 
+|, to_state: extract_L_19_st_+_Rfind4|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_+_Rfind4|, transitions: 
+|, to_state: extract_L_19_st_+_Rfind3|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_+_Rfind3|, transitions: 
+|, to_state: extract_L_19_st_+_Rfind2|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_+_Rfind2|, transitions: 
+|, to_state: extract_L_19_st_+_Rfind1|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_+_Rfind1|, transitions: 
+|, to_state: extract_L_19_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_extract_+_write_+, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_20_1moove_LEFT, write: +, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_=_Rfind5|, transitions: 
+|, to_state: extract_L_19_st_=_Rfind4|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_=_Rfind4|, transitions: 
+|, to_state: extract_L_19_st_=_Rfind3|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_=_Rfind3|, transitions: 
+|, to_state: extract_L_19_st_=_Rfind2|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_=_Rfind2|, transitions: 
+|, to_state: extract_L_19_st_=_Rfind1|, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_st_=_Rfind1|, transitions: 
+|, to_state: extract_L_19_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_L_19_extract_=_write_=, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_20_1moove_LEFT, write: =, action: RIGHT, type: Multiple
+}
+{ extract_L_20_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_21_replic_entry, write: <Copy>, action: LEFT, type: Multiple
+}
+{ extract_L_21_replic_entry, transitions: 
+A, to_state: extract_L_21_copyA, write: <Copy>, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: <Copy>, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: <Copy>, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: <Copy>, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: <Copy>, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: <Copy>, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: <Copy>, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: <Copy>, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: <Copy>, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: <Copy>, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: <Copy>, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: <Copy>, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: <Copy>, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyA, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: A, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: A, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: A, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: A, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: A, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: A, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: A, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: A, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: A, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: A, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: A, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: A, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: A, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: A, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyB, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: B, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: B, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: B, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: B, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: B, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: B, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: B, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: B, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: B, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: B, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: B, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: B, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: B, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: B, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyC, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: C, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: C, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: C, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: C, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: C, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: C, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: C, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: C, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: C, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: C, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: C, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: C, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: C, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: C, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyD, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: D, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: D, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: D, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: D, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: D, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: D, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: D, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: D, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: D, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: D, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: D, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: D, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: D, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: D, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyE, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: E, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: E, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: E, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: E, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: E, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: E, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: E, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: E, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: E, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: E, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: E, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: E, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: E, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: E, action: RIGHT, type: Standart
+}
+{ extract_L_21_copy1, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: 1, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: 1, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: 1, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: 1, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: 1, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: 1, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: 1, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: 1, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: 1, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: 1, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: 1, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: 1, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: 1, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: 1, action: RIGHT, type: Standart
+}
+{ extract_L_21_copy., transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: ., action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: ., action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: ., action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: ., action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: ., action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: ., action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: ., action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: ., action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: ., action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: ., action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: ., action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: ., action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: ., action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: ., action: RIGHT, type: Standart
+}
+{ extract_L_21_copy+, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: +, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: +, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: +, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: +, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: +, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: +, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: +, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: +, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: +, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: +, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: +, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: +, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: +, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: +, action: RIGHT, type: Standart
+}
+{ extract_L_21_copy=, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: =, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: =, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: =, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: =, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: =, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: =, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: =, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: =, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: =, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: =, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: =, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: =, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: =, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: =, action: RIGHT, type: Standart
+}
+{ extract_L_21_copy|, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: |, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: |, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: |, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: |, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: |, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: |, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: |, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: |, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: |, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: |, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: |, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: |, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: |, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: |, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyL, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: L, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: L, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: L, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: L, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: L, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: L, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: L, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: L, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: L, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: L, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: L, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: L, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: L, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: L, action: RIGHT, type: Standart
+}
+{ extract_L_21_copyR, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: R, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: R, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: R, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: R, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: R, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: R, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: R, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: R, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: R, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: R, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: R, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: R, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: R, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: R, action: RIGHT, type: Standart
+}
+{ extract_L_21_copy~, transitions: 
+_, to_state: extract_L_22_2moove_LEFT, write: ~, action: RIGHT, type: Standart
+A, to_state: extract_L_21_copyA, write: ~, action: RIGHT, type: Standart
+B, to_state: extract_L_21_copyB, write: ~, action: RIGHT, type: Standart
+C, to_state: extract_L_21_copyC, write: ~, action: RIGHT, type: Standart
+D, to_state: extract_L_21_copyD, write: ~, action: RIGHT, type: Standart
+E, to_state: extract_L_21_copyE, write: ~, action: RIGHT, type: Standart
+1, to_state: extract_L_21_copy1, write: ~, action: RIGHT, type: Standart
+., to_state: extract_L_21_copy., write: ~, action: RIGHT, type: Standart
++, to_state: extract_L_21_copy+, write: ~, action: RIGHT, type: Standart
+=, to_state: extract_L_21_copy=, write: ~, action: RIGHT, type: Standart
+|, to_state: extract_L_21_copy|, write: ~, action: RIGHT, type: Standart
+L, to_state: extract_L_21_copyL, write: ~, action: RIGHT, type: Standart
+R, to_state: extract_L_21_copyR, write: ~, action: RIGHT, type: Standart
+~, to_state: extract_L_21_copy~, write: ~, action: RIGHT, type: Standart
+}
+{ extract_L_22_2moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_22_1moove_LEFT, write: <Copy>, action: LEFT, type: Multiple
+}
+{ extract_L_22_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_L_23_write__, write: <Copy>, action: LEFT, type: Multiple
+}
+{ extract_L_23_write__, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: _, action: RIGHT, type: Multiple
+}
+{ st_R_st_switch, transitions: 
+1, to_state: st_R_st_1_st_switch, write: <Copy>, action: LEFT, type: Standart
+., to_state: st_R_st_._st_switch, write: <Copy>, action: LEFT, type: Standart
++, to_state: st_R_st_+_st_switch, write: <Copy>, action: LEFT, type: Standart
+=, to_state: st_R_st_=_st_switch, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_R_st_1_st_switch, transitions: 
+A, to_state: st_R_st_1_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_R_st_1_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_R_st_1_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_R_st_1_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_R_st_1_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_R_st_1_st_A_Lfind4|, transitions: 
+|, to_state: st_R_st_1_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_A_Lfind3|, transitions: 
+|, to_state: st_R_st_1_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_A_Lfind2|, transitions: 
+|, to_state: st_R_st_1_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_A_Lfind1|, transitions: 
+|, to_state: st_R_st_1_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_1_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_1_Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_R_st_1_st_B_Lfind4|, transitions: 
+|, to_state: st_R_st_1_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_B_Lfind3|, transitions: 
+|, to_state: st_R_st_1_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_B_Lfind2|, transitions: 
+|, to_state: st_R_st_1_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_B_Lfind1|, transitions: 
+|, to_state: st_R_st_1_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_1_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_1_Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_R_st_1_st_C_Lfind4|, transitions: 
+|, to_state: st_R_st_1_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_C_Lfind3|, transitions: 
+|, to_state: st_R_st_1_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_C_Lfind2|, transitions: 
+|, to_state: st_R_st_1_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_C_Lfind1|, transitions: 
+|, to_state: st_R_st_1_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_1_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_1_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_R_st_1_st_D_Lfind4|, transitions: 
+|, to_state: st_R_st_1_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_D_Lfind3|, transitions: 
+|, to_state: st_R_st_1_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_D_Lfind2|, transitions: 
+|, to_state: st_R_st_1_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_D_Lfind1|, transitions: 
+|, to_state: st_R_st_1_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_1_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_1_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_R_st_1_st_E_Lfind4|, transitions: 
+|, to_state: st_R_st_1_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_E_Lfind3|, transitions: 
+|, to_state: st_R_st_1_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_E_Lfind2|, transitions: 
+|, to_state: st_R_st_1_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_E_Lfind1|, transitions: 
+|, to_state: st_R_st_1_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_1_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_1_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_1_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_R_extract_1_Rfind1_, transitions: 
+_, to_state: st_R_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_R_extract_1_write_1, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_24_1moove_RIGHT, write: 1, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_switch, transitions: 
+A, to_state: st_R_st_._st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_R_st_._st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_R_st_._st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_R_st_._st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_R_st_._st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_R_st_._st_A_Lfind4|, transitions: 
+|, to_state: st_R_st_._st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_A_Lfind3|, transitions: 
+|, to_state: st_R_st_._st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_A_Lfind2|, transitions: 
+|, to_state: st_R_st_._st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_A_Lfind1|, transitions: 
+|, to_state: st_R_st_._st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_._extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_._Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_R_st_._st_B_Lfind4|, transitions: 
+|, to_state: st_R_st_._st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_B_Lfind3|, transitions: 
+|, to_state: st_R_st_._st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_B_Lfind2|, transitions: 
+|, to_state: st_R_st_._st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_B_Lfind1|, transitions: 
+|, to_state: st_R_st_._st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_._extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_._Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_R_st_._st_C_Lfind4|, transitions: 
+|, to_state: st_R_st_._st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_C_Lfind3|, transitions: 
+|, to_state: st_R_st_._st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_C_Lfind2|, transitions: 
+|, to_state: st_R_st_._st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_C_Lfind1|, transitions: 
+|, to_state: st_R_st_._st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_._extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_._Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_R_st_._st_D_Lfind4|, transitions: 
+|, to_state: st_R_st_._st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_D_Lfind3|, transitions: 
+|, to_state: st_R_st_._st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_D_Lfind2|, transitions: 
+|, to_state: st_R_st_._st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_D_Lfind1|, transitions: 
+|, to_state: st_R_st_._st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_._extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_._Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_R_st_._st_E_Lfind4|, transitions: 
+|, to_state: st_R_st_._st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_E_Lfind3|, transitions: 
+|, to_state: st_R_st_._st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_E_Lfind2|, transitions: 
+|, to_state: st_R_st_._st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_E_Lfind1|, transitions: 
+|, to_state: st_R_st_._st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_._extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_._extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_._Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_R_extract_._Rfind1_, transitions: 
+_, to_state: st_R_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_R_extract_._write_., transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_24_1moove_RIGHT, write: ., action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_switch, transitions: 
+A, to_state: st_R_st_+_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_R_st_+_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_R_st_+_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_R_st_+_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_R_st_+_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_R_st_+_st_A_Lfind4|, transitions: 
+|, to_state: st_R_st_+_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_A_Lfind3|, transitions: 
+|, to_state: st_R_st_+_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_A_Lfind2|, transitions: 
+|, to_state: st_R_st_+_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_A_Lfind1|, transitions: 
+|, to_state: st_R_st_+_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_+_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_+_Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_R_st_+_st_B_Lfind4|, transitions: 
+|, to_state: st_R_st_+_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_B_Lfind3|, transitions: 
+|, to_state: st_R_st_+_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_B_Lfind2|, transitions: 
+|, to_state: st_R_st_+_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_B_Lfind1|, transitions: 
+|, to_state: st_R_st_+_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_+_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_+_Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_R_st_+_st_C_Lfind4|, transitions: 
+|, to_state: st_R_st_+_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_C_Lfind3|, transitions: 
+|, to_state: st_R_st_+_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_C_Lfind2|, transitions: 
+|, to_state: st_R_st_+_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_C_Lfind1|, transitions: 
+|, to_state: st_R_st_+_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_+_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_+_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_R_st_+_st_D_Lfind4|, transitions: 
+|, to_state: st_R_st_+_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_D_Lfind3|, transitions: 
+|, to_state: st_R_st_+_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_D_Lfind2|, transitions: 
+|, to_state: st_R_st_+_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_D_Lfind1|, transitions: 
+|, to_state: st_R_st_+_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_+_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_+_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_R_st_+_st_E_Lfind4|, transitions: 
+|, to_state: st_R_st_+_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_E_Lfind3|, transitions: 
+|, to_state: st_R_st_+_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_E_Lfind2|, transitions: 
+|, to_state: st_R_st_+_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_E_Lfind1|, transitions: 
+|, to_state: st_R_st_+_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_+_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_+_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_+_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_R_extract_+_Rfind1_, transitions: 
+_, to_state: st_R_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_R_extract_+_write_+, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_24_1moove_RIGHT, write: +, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_switch, transitions: 
+A, to_state: st_R_st_=_st_A_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+B, to_state: st_R_st_=_st_B_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+C, to_state: st_R_st_=_st_C_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+D, to_state: st_R_st_=_st_D_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+E, to_state: st_R_st_=_st_E_Lfind4|, write: <Copy>, action: LEFT, type: Standart
+}
+{ st_R_st_=_st_A_Lfind4|, transitions: 
+|, to_state: st_R_st_=_st_A_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_A_Lfind3|, transitions: 
+|, to_state: st_R_st_=_st_A_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_A_Lfind2|, transitions: 
+|, to_state: st_R_st_=_st_A_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_A_Lfind1|, transitions: 
+|, to_state: st_R_st_=_st_A_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_A_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_=_extract_A_write_A, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_extract_A_write_A, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_=_Rfind1_, write: A, action: RIGHT, type: Multiple
+}
+{ st_R_st_=_st_B_Lfind4|, transitions: 
+|, to_state: st_R_st_=_st_B_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_B_Lfind3|, transitions: 
+|, to_state: st_R_st_=_st_B_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_B_Lfind2|, transitions: 
+|, to_state: st_R_st_=_st_B_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_B_Lfind1|, transitions: 
+|, to_state: st_R_st_=_st_B_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_B_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_=_extract_B_write_B, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_extract_B_write_B, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_=_Rfind1_, write: B, action: RIGHT, type: Multiple
+}
+{ st_R_st_=_st_C_Lfind4|, transitions: 
+|, to_state: st_R_st_=_st_C_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_C_Lfind3|, transitions: 
+|, to_state: st_R_st_=_st_C_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_C_Lfind2|, transitions: 
+|, to_state: st_R_st_=_st_C_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_C_Lfind1|, transitions: 
+|, to_state: st_R_st_=_st_C_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_C_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_=_extract_C_write_C, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_extract_C_write_C, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_=_Rfind1_, write: C, action: RIGHT, type: Multiple
+}
+{ st_R_st_=_st_D_Lfind4|, transitions: 
+|, to_state: st_R_st_=_st_D_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_D_Lfind3|, transitions: 
+|, to_state: st_R_st_=_st_D_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_D_Lfind2|, transitions: 
+|, to_state: st_R_st_=_st_D_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_D_Lfind1|, transitions: 
+|, to_state: st_R_st_=_st_D_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_D_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_=_extract_D_write_D, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_extract_D_write_D, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_=_Rfind1_, write: D, action: RIGHT, type: Multiple
+}
+{ st_R_st_=_st_E_Lfind4|, transitions: 
+|, to_state: st_R_st_=_st_E_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_E_Lfind3|, transitions: 
+|, to_state: st_R_st_=_st_E_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_E_Lfind2|, transitions: 
+|, to_state: st_R_st_=_st_E_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_E_Lfind1|, transitions: 
+|, to_state: st_R_st_=_st_E_1moove_LEFT, write: <Copy>, action: LEFT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_st_E_1moove_LEFT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_st_=_extract_E_write_E, write: <Copy>, action: LEFT, type: Multiple
+}
+{ st_R_st_=_extract_E_write_E, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: st_R_extract_=_Rfind1_, write: E, action: RIGHT, type: Multiple
+}
+{ st_R_extract_=_Rfind1_, transitions: 
+_, to_state: st_R_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ st_R_extract_=_write_=, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_24_1moove_RIGHT, write: =, action: LEFT, type: Multiple
+}
+{ extract_R_24_1moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_25_replic_entry, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_R_25_replic_entry, transitions: 
+A, to_state: extract_R_25_copyA, write: <Copy>, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: <Copy>, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: <Copy>, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: <Copy>, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: <Copy>, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: <Copy>, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: <Copy>, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: <Copy>, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: <Copy>, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: <Copy>, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: <Copy>, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: <Copy>, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: <Copy>, action: LEFT, type: Standart
+}
+{ extract_R_25_copyA, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: A, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: A, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: A, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: A, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: A, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: A, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: A, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: A, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: A, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: A, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: A, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: A, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: A, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: A, action: LEFT, type: Standart
+}
+{ extract_R_25_copyB, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: B, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: B, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: B, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: B, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: B, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: B, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: B, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: B, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: B, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: B, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: B, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: B, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: B, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: B, action: LEFT, type: Standart
+}
+{ extract_R_25_copyC, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: C, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: C, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: C, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: C, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: C, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: C, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: C, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: C, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: C, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: C, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: C, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: C, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: C, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: C, action: LEFT, type: Standart
+}
+{ extract_R_25_copyD, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: D, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: D, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: D, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: D, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: D, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: D, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: D, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: D, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: D, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: D, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: D, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: D, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: D, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: D, action: LEFT, type: Standart
+}
+{ extract_R_25_copyE, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: E, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: E, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: E, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: E, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: E, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: E, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: E, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: E, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: E, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: E, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: E, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: E, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: E, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: E, action: LEFT, type: Standart
+}
+{ extract_R_25_copy1, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: 1, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: 1, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: 1, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: 1, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: 1, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: 1, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: 1, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: 1, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: 1, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: 1, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: 1, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: 1, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: 1, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: 1, action: LEFT, type: Standart
+}
+{ extract_R_25_copy., transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: ., action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: ., action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: ., action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: ., action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: ., action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: ., action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: ., action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: ., action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: ., action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: ., action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: ., action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: ., action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: ., action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: ., action: LEFT, type: Standart
+}
+{ extract_R_25_copy+, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: +, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: +, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: +, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: +, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: +, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: +, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: +, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: +, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: +, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: +, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: +, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: +, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: +, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: +, action: LEFT, type: Standart
+}
+{ extract_R_25_copy=, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: =, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: =, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: =, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: =, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: =, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: =, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: =, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: =, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: =, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: =, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: =, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: =, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: =, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: =, action: LEFT, type: Standart
+}
+{ extract_R_25_copy|, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: |, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: |, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: |, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: |, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: |, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: |, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: |, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: |, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: |, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: |, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: |, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: |, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: |, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: |, action: LEFT, type: Standart
+}
+{ extract_R_25_copyL, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: L, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: L, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: L, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: L, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: L, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: L, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: L, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: L, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: L, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: L, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: L, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: L, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: L, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: L, action: LEFT, type: Standart
+}
+{ extract_R_25_copyR, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: R, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: R, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: R, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: R, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: R, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: R, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: R, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: R, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: R, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: R, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: R, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: R, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: R, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: R, action: LEFT, type: Standart
+}
+{ extract_R_25_copy~, transitions: 
+_, to_state: extract_R_26_2moove_RIGHT, write: ~, action: LEFT, type: Standart
+A, to_state: extract_R_25_copyA, write: ~, action: LEFT, type: Standart
+B, to_state: extract_R_25_copyB, write: ~, action: LEFT, type: Standart
+C, to_state: extract_R_25_copyC, write: ~, action: LEFT, type: Standart
+D, to_state: extract_R_25_copyD, write: ~, action: LEFT, type: Standart
+E, to_state: extract_R_25_copyE, write: ~, action: LEFT, type: Standart
+1, to_state: extract_R_25_copy1, write: ~, action: LEFT, type: Standart
+., to_state: extract_R_25_copy., write: ~, action: LEFT, type: Standart
++, to_state: extract_R_25_copy+, write: ~, action: LEFT, type: Standart
+=, to_state: extract_R_25_copy=, write: ~, action: LEFT, type: Standart
+|, to_state: extract_R_25_copy|, write: ~, action: LEFT, type: Standart
+L, to_state: extract_R_25_copyL, write: ~, action: LEFT, type: Standart
+R, to_state: extract_R_25_copyR, write: ~, action: LEFT, type: Standart
+~, to_state: extract_R_25_copy~, write: ~, action: LEFT, type: Standart
+}
+{ extract_R_26_2moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_26_1moove_RIGHT, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_R_26_1moove_RIGHT, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_27_write__, write: <Copy>, action: RIGHT, type: Multiple
+}
+{ extract_R_27_write__, transitions: 
+['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: extract_R_28_Ris_right_end, write: _, action: RIGHT, type: Multiple
+}
+{ extract_R_28_Ris_right_end, transitions: 
+~, to_state: extract_R_28_Lfind4|, write: <Copy>, action: LEFT, type: Standart
 1, to_state: Next, write: <Copy>, action: LEFT, type: Standart
 ., to_state: Next, write: <Copy>, action: LEFT, type: Standart
 +, to_state: Next, write: <Copy>, action: LEFT, type: Standart
 =, to_state: Next, write: <Copy>, action: LEFT, type: Standart
 }
-{ 48_Lfind4|, transitions: 
-|, to_state: 48_Lfind3|, write: <Copy>, action: LEFT, type: Standart
+{ extract_R_28_Lfind4|, transitions: 
+|, to_state: extract_R_28_Lfind3|, write: <Copy>, action: LEFT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 48_Lfind3|, transitions: 
-|, to_state: 48_Lfind2|, write: <Copy>, action: LEFT, type: Standart
+{ extract_R_28_Lfind3|, transitions: 
+|, to_state: extract_R_28_Lfind2|, write: <Copy>, action: LEFT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 48_Lfind2|, transitions: 
-|, to_state: 48_Lfind1|, write: <Copy>, action: LEFT, type: Standart
+{ extract_R_28_Lfind2|, transitions: 
+|, to_state: extract_R_28_Lfind1|, write: <Copy>, action: LEFT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 48_Lfind1|, transitions: 
-|, to_state: 48_st_switch, write: <Copy>, action: LEFT, type: Standart
+{ extract_R_28_Lfind1|, transitions: 
+|, to_state: extract_R_28_st_switch, write: <Copy>, action: LEFT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: LEFT, type: Multiple
 }
-{ 48_st_switch, transitions: 
-1, to_state: 48_st_1_Rfind1_, write: <Copy>, action: LEFT, type: Standart
-., to_state: 48_st_._Rfind1_, write: <Copy>, action: LEFT, type: Standart
-+, to_state: 48_st_+_Rfind1_, write: <Copy>, action: LEFT, type: Standart
-=, to_state: 48_st_=_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+{ extract_R_28_st_switch, transitions: 
+1, to_state: extract_R_28_st_1_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+., to_state: extract_R_28_st_._Rfind1_, write: <Copy>, action: LEFT, type: Standart
++, to_state: extract_R_28_st_+_Rfind1_, write: <Copy>, action: LEFT, type: Standart
+=, to_state: extract_R_28_st_=_Rfind1_, write: <Copy>, action: LEFT, type: Standart
 }
-{ 48_st_1_Rfind1_, transitions: 
-_, to_state: 48_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
+{ extract_R_28_st_1_Rfind1_, transitions: 
+_, to_state: extract_R_28_extract_1_write_1, write: <Copy>, action: RIGHT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
 }
-{ 48_extract_1_write_1, transitions: 
+{ extract_R_28_extract_1_write_1, transitions: 
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: 1, action: LEFT, type: Multiple
 }
-{ 48_st_._Rfind1_, transitions: 
-_, to_state: 48_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
+{ extract_R_28_st_._Rfind1_, transitions: 
+_, to_state: extract_R_28_extract_._write_., write: <Copy>, action: RIGHT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
 }
-{ 48_extract_._write_., transitions: 
+{ extract_R_28_extract_._write_., transitions: 
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: ., action: LEFT, type: Multiple
 }
-{ 48_st_+_Rfind1_, transitions: 
-_, to_state: 48_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
+{ extract_R_28_st_+_Rfind1_, transitions: 
+_, to_state: extract_R_28_extract_+_write_+, write: <Copy>, action: RIGHT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
 }
-{ 48_extract_+_write_+, transitions: 
+{ extract_R_28_extract_+_write_+, transitions: 
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: +, action: LEFT, type: Multiple
 }
-{ 48_st_=_Rfind1_, transitions: 
-_, to_state: 48_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
+{ extract_R_28_st_=_Rfind1_, transitions: 
+_, to_state: extract_R_28_extract_=_write_=, write: <Copy>, action: RIGHT, type: Standart
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '|', 'L', 'R', '~'], to_state: Same, write: <Copy>, action: RIGHT, type: Multiple
 }
-{ 48_extract_=_write_=, transitions: 
+{ extract_R_28_extract_=_write_=, transitions: 
 ['A', 'B', 'C', 'D', 'E', '1', '.', '+', '=', '_', '|', 'L', 'R', '~'], to_state: Next, write: =, action: LEFT, type: Multiple
 }

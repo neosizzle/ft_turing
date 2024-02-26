@@ -532,8 +532,10 @@ let moove_fun c =
 		let entry =
 				("replic_entry", List.map (range_without_c alphabet end_char) (fun x -> Standart (x, To_state ("copy" ^ x), Copy, dir)))
 		in
-		entry :: (List.map (range_without_c alphabet end_char) generate_copy)
+		let res = entry :: (List.map (range_without_c alphabet end_char) generate_copy) in
+		res
 	in
+	let test = replic_tape "L" Left in
 	let right_fun =
 		let if_right_end = join_absfun
 			[find_nchar 4 pipe Left Left;
@@ -681,6 +683,6 @@ let exec_machine =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
 	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
 	(* print_store_ret store_res; *)
-	let res = moove_fun "R" in
+	let res = exec_transition in
 	print_endline "========================";
 	print_absfun res
