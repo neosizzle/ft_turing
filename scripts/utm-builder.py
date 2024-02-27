@@ -68,6 +68,12 @@ class Transition:
 		self.action = action
 
 	def __str__(self):
+		if type(self.read_char) is list :
+			formatted_readchar = "["
+			for c in self.read_char:
+				formatted_readchar += f"{c} "
+			formatted_readchar += "]"
+			return f"{formatted_readchar}, to_state: {self.to_state}, write: {self.write}, action: {self.action}, type: {self.type}"
 		return f"{self.read_char}, to_state: {self.to_state}, write: {self.write}, action: {self.action}, type: {self.type}"
 
 # State value
@@ -320,10 +326,13 @@ def store(character_list, states_pre_write, states_for_write_fn, switch_directio
 			for transition in state.transitions :
 				new_transition = transition
 				if new_transition.to_state.type == "To_state" :
+					new_tostatename = f"extract_{read_char}_{new_transition.to_state.value}"
+					if new_transition.to_state.value == "HALT":
+						new_tostatename = "HALT"
 					new_transition = Transition(
 						transition.type,
 						transition.read_char,
-						ToState("To_state", f"extract_{read_char}_{new_transition.to_state.value}"),
+						ToState("To_state", new_tostatename),
 						transition.write,
 						transition.action
 					)
@@ -462,11 +471,11 @@ def blank_until_char(char, action, override_char = False) :
 # find_nchar
 # this will create a list of states that will call next once len number of 
 # c has been found while traversing find_dir
-def find_nchar(len, c, next_dir, find_dir, loop = False):
+def find_nchar(len, c, find_dir, next_dir, loop = False):
 	res = []
 	for i in range(len, 0, -1):
 		is_final = True if i == 1 else False
-		statename = f"{find_dir.inner[0]}find{i}{c}"
+		statename = f"{next_dir.inner[0]}find{i}{c}"
 		next_statename = f"{find_dir.inner[0]}find{i - 1}{c}"
 		found_to_state = ToState("Loop" if loop else "Next", "") if is_final else ToState("To_state", next_statename)
 		transitions = [
@@ -494,7 +503,7 @@ def build_machine_init():
 			),
 		blank_until_char(pipe, Action("LEFT"), True),
 		blank_until_char(blank, Action("RIGHT")),
-		find_nchar(1, pipe, Action("RIGHT"), Action("LEFT")),
+		find_nchar(1, pipe, Action("LEFT"), Action("RIGHT")),
 		nmoove(1, Action("LEFT")),
 		arb_write(Action("RIGHT"), pipe),
 		nmoove(2, Action("RIGHT")),
@@ -564,7 +573,7 @@ def test_finals(c) :
 			Action("RIGHT")
 			)
 		transitions.append(new_transition)
-	return State(new_statename, transitions)
+	return [State(new_statename, transitions)]
 
 # test_state_transition
 # this will generate states that will switch to Next state when reading input machine states
@@ -924,6 +933,68 @@ def exec_transition():
 		Action("LEFT")
 	))
 
+# exec_machine
+# generates states that runs the execution part of the machine
+def build_machine_exec():
+	read_cur = join_store(
+				store(
+					sub_alphabet,
+					find_nchar(5, pipe, Action("LEFT"), Action("LEFT")),
+					(lambda c: arb_write(Action("LEFT"), c)),
+					Action("LEFT")
+					)
+				)
+	is_a_final_state = join_store(
+					store(
+						state_range,
+						nmoove(6, Action("RIGHT")),
+						(lambda c: test_finals(c)),
+						Action("RIGHT")
+						)
+				)
+	actions = [
+		nmoove(1, Action("RIGHT")),
+		find_nchar(1, cursor, Action("RIGHT"), Action("RIGHT")),
+		read_cur,
+		is_a_final_state,
+		find_nchar(4, pipe, Action("LEFT"), Action("LEFT")),
+		find_transition(),
+		nmoove(2, Action("RIGHT")),
+		exec_transition(),
+		find_nchar(1, blank, Action("RIGHT"), Action("LEFT"), loop=True),
+	]
+
+	# for action in actions:
+	# 	for state in action:
+	# 		print(state)
+
+
+	indexed_actions = []
+	index = 35 # TODO: make this global since its hardcoded to fit ref
+	for action in actions:
+		new_action = []
+		for state in action:
+			new_statename = f"{index}_{state.name}"
+			new_transitions = []
+			for transition in state.transitions:
+				new_transition = transition
+				if transition.to_state.type == "To_state" and transition.to_state.value != "HALT" and transition.to_state.value != "Sub_undefined":
+					new_tostate = ToState("To_state", f"{index}_{transition.to_state.value}")
+					new_transition = Transition(
+						transition.type,
+						transition.read_char,
+						new_tostate,
+						transition.write,
+						transition.action
+					)
+				new_transitions.append(new_transition)
+			new_state = State(new_statename, new_transitions)
+			new_action.append(new_state)
+		indexed_actions.append(new_action)
+		index += 1
+	# return []
+	return create_loop(join_states(indexed_actions))
+
 # reads json file and return the contents
 def load_json_file(filepath):
 	with open(filepath) as f:
@@ -966,7 +1037,7 @@ def main(filepath):
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
 	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
-	res = exec_transition()
+	res = join_states([build_machine_init(), build_machine_exec()])
 	for state in res:
 		print(state)
 	# pprint(sub_alphabet[0])

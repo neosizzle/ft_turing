@@ -52,15 +52,14 @@ let print_transition transition =
 
 		let write_str = match write with 
 		| Write str -> str
-		| Copy -> "Copy"
+		| Copy -> "<Copy>"
 		in
 
 		let action_str = match action with
-		| Left -> "Left"
-		| Right -> "Right"
+		| Left -> "LEFT"
+		| Right -> "RIGHT"
 		in
-
-		Format.printf "\nstring: %s\nto_state: %s\nwrite: %s\naction: %s\n" string to_state_str write_str action_str
+		Format.printf "%s, to_state: %s, write: %s, action: %s, type: Standart\n" string to_state_str write_str action_str
 	| Multiple (strings, to_state, write, action) -> 
 		let to_state_str = match to_state with 
 		| To_state str -> str 
@@ -71,17 +70,17 @@ let print_transition transition =
 
 		let write_str = match write with 
 		| Write str -> str
-		| Copy -> "Copy"
+		| Copy -> "<Copy>"
 		in
 
 		let action_str = match action with
-		| Left -> "Left"
-		| Right -> "Right"
+		| Left -> "LEFT"
+		| Right -> "RIGHT"
 		in
 
-		Format.printf "\nstring(multiple): [";
+		Format.printf "[";
 		List.iter strings (fun string -> Format.printf "%s " string);
-		Format.printf "]\nto_state: %s\nwrite: %s\naction: %s\n" to_state_str write_str action_str
+		Format.printf "], to_state: %s, write: %s, action: %s, type: Multiple\n" to_state_str write_str action_str
 
 let print_program program = 
 	List.iter  program (fun item ->
@@ -96,9 +95,9 @@ let print_jtransition jtransition =
 let print_absfun stateslist = 
 	List.iter stateslist (
 		fun _state ->
-			Format.printf "{ statename: %s\ntransitions: \n" (fst _state);
+			Format.printf "{ %s, transitions: \n" (fst _state);
 			List.iter (snd _state) (fun transition -> print_transition transition);
-			Format.printf " }\n"
+			Format.printf "}\n"
 	)
 let print_state state =
 	Format.printf "statename: %s\ntransitions: \n" (fst state);
@@ -106,11 +105,13 @@ let print_state state =
 
 let print_labsfun input = 
 	List.iter input (fun stateslist -> 
-		List.iter stateslist (
+		print_absfun stateslist
+		(* List.iter stateslist (
 			fun _state ->
-				Format.printf "statename: %s\ntransitions: \n" (fst _state);
+				Format.printf "%s\n" (fst _state);
+				(* Format.printf "statename: %s\ntransitions: \n" (fst _state); *)
 				(* List.iter (snd _state) (fun transition -> print_transition transition) *)
-		)
+		) *)
 	)
 
 let print_exec_mach input = 
@@ -623,6 +624,7 @@ let exec_machine =
 
 		(*Replace loop (at final state transition) with the first trnsition in this list*)
 		let res = create_loop @@ join_absfun @@ List.fold read_cur ~init:[] ~f:(@<) in
+		(* let res = read_cur in *)
 		(* Format.printf "=======exec_machine ret\n";
 		print_labsfun [res] ;
 		Format.printf "=======exec_machine ret end\n"; *)
@@ -682,7 +684,9 @@ let exec_machine =
 	let c_list s =
 		[("whatt", [s_transition_2; s_transition_3]); ("howw", [s_transition; s_transition_e])] in
 	let store_res = store ["=one"; "=two"; "=three"] [state_2; state_1; state_3] c_list l_action in
-	(* print_store_ret store_res; *)
-	let res = exec_transition in
-	print_endline "========================";
-	print_absfun res
+	(* print_store_ret store_res;
+	let res = join_absfun [restruct_machine; exec_machine] in
+	print_absfun res *)
+	let program = join_absfun [restruct_machine; exec_machine] in
+	let jtransition = (apply_absfun program "asdf") in
+	print_jtransition jtransition;
