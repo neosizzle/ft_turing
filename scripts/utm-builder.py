@@ -75,6 +75,14 @@ class Transition:
 			formatted_readchar += "]"
 			return f"{formatted_readchar}, to_state: {self.to_state}, write: {self.write}, action: {self.action}, type: {self.type}"
 		return f"{self.read_char}, to_state: {self.to_state}, write: {self.write}, action: {self.action}, type: {self.type}"
+	
+	def __dict__(self):
+		return {
+			"read": self.read_char,
+			"to_state": f"{self.to_state}",
+			"write": f"{self.write}",
+			"action":  f"{self.action}",
+		}
 
 # State value
 # name - state name
@@ -92,6 +100,41 @@ class State:
 		res += "}"
 		return res
 
+	def __dict__(self):
+		transitions_dict = []
+		for transition in self.transitions:
+			transitions_dict.append(transition.__dict__())
+		return {
+			self.name: transitions_dict
+		}
+# json output class
+class Output:
+	def __init__(self, name, alphabet, blank, states, initial, finals, transitions):
+		self.name = name
+		self.alphabet = alphabet
+		self.blank = blank
+		self.states = states
+		self.initial = initial
+		self.finals = finals
+		self.transitions = transitions
+		
+
+	def __dict__(self):
+		transitions_collect = []
+		for transition in self.transitions:
+			transitions_collect.append(transition.__dict__())
+		transitions_dict = {}
+		for transition in transitions_collect:
+			transitions_dict[list(transition.keys())[0]] = list(transition.values())[0]
+		return {
+			"name": self.name,
+			"alphabet": self.alphabet,
+			"blank": self.blank,
+			"states": self.states,
+			"initial": self.initial,
+			"finals": self.finals,
+			"transitions": transitions_dict
+		}
 #######################
 ###     GLOBALS     ###
 #######################
@@ -1036,10 +1079,25 @@ def main(filepath):
 	states_lst_nonext = [state_3, state_2]
 	def c_list(s) :
 		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
-	res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
-	res = join_states([build_machine_init(), build_machine_exec()])
-	for state in res:
-		print(state)
+	# res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
+	machine_transitions = join_states([build_machine_init(), build_machine_exec()])
+	final_transitions = final_application(machine_transitions, "END")
+	finals = ["END", "HALT", "Sub_undefined"]
+	statenames = list(map(lambda x: x.name, final_transitions)) + finals
+
+	# for state in res:
+	# 	print(state)
+	transitions = [state_1, state_2, state_3]
+	output = Output(
+		"name",
+		output_alphabet,
+		blank,
+		statenames,
+		statenames[0],
+		finals,
+		final_transitions)
+	print(json.dumps(output.__dict__()))
+	# json.dumps(tmp.__dict__())
 	# pprint(sub_alphabet[0])
 
 # Check if the script is run directly
