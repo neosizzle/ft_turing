@@ -26,7 +26,19 @@ interp: $(INTERFACES_OBJS) $(SRCS_OBJS_INTERP)
 	$(MAKE) clean
 
 setup_mac : # mac with brew only
-	@echo Run eval opam env to load opam to env
+	hash -r
+	type ocaml || brew install ocaml
+
+	hash -r
+	type ocamlfind || brew install ocaml-findlib
+
+	hash -r
+	type opam || \
+		(brew install opam &&\
+		opam init -y)
+
+	hash -r 
+	eval `opam env` && opam -y install yojson spectrum core
 
 setup_linux: #linux with apt
 	hash -r
