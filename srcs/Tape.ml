@@ -43,10 +43,11 @@ let tape_to_str tape =
   let rec _loop i res =
     if i < tape.size then
       if i = tape.head then
-        _loop (i + 1) (res ^ "[" ^ (Char.escaped (read_tape_i tape i)) ^ "]")
+        (* _loop (i + 1) (res ^ "@{<red>G@}" ^ (Char.escaped (read_tape_i tape i)) ^ "]") *)
+        _loop (i + 1) (Spectrum.Simple.sprintf ("%s@{<green>[@}%s@{<green>]@}@{<grey>") res (Char.escaped (read_tape_i tape i)))
       else 
         _loop (i + 1) (res ^ (Char.escaped (read_tape_i tape i)))
     else
       res 
-  in
+    in
   _loop 0 ""

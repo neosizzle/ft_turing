@@ -14,29 +14,48 @@ LINKFLAGS = -linkpkg
 all : 
 	@echo "Usage: make native | interp"
 
-native: setup $(INTERFACES_OBJS) $(SRCS_OBJS_NATIVE) 
-	@echo native linking..
-	ocamlfind ocamlopt $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_NATIVE) -I srcs
+native: $(INTERFACES_OBJS) $(SRCS_OBJS_NATIVE) 
+	@echo "..........native linking........"
+	eval `opam env` && ocamlfind ocamlopt $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_NATIVE) -I srcs
 	$(MAKE) clean
 
-interp: setup $(INTERFACES_OBJS) $(SRCS_OBJS_INTERP)
-	@echo interp linking..
-	ocamlfind ocamlc $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_INTERP) -I srcs
+# Note: run eval `opam config env` when loading interp for linux
+interp: $(INTERFACES_OBJS) $(SRCS_OBJS_INTERP)
+	@echo "..........interp linking........"
+	eval `opam env` && ocamlfind ocamlc $(PKGFLAGS) $(LINKFLAGS) -o $(NAME) $(SRCS_OBJS_INTERP) -I srcs
 	$(MAKE) clean
 
-setup :
+setup_mac : # mac with brew only
 	@echo Run eval opam env to load opam to env
+
+setup_linux: #linux with apt
+	hash -r
+	type ocaml || sudo apt install -y ocaml-interp
+
+	hash -r
+	type ocamlfind || sudo apt install -y ocaml-findlib
+
+	hash -r
+	type opam || \
+		(sudo apt install -y opam &&\
+		opam init -y)
+
+	hash -r 
+	eval `opam env` && opam -y install yojson spectrum core
 
 .SUFFIXES:
 .SUFFIXES: .ml .mli .cmo .cmi .cmx
 
 .ml.cmx : 
-	ocamlfind ocamlopt  $(PKGFLAGS) -c $< -I srcs
+	@echo "..........native compiling........"
+	eval `opam env` && ocamlfind ocamlopt  $(PKGFLAGS) -c $< -I srcs
 
 .ml.cmo : 
-	ocamlfind ocamlc  $(PKGFLAGS) -c  $< -I srcs
+	@echo "..........interp compiling........"
+	eval `opam env` && ocamlfind ocamlc  $(PKGFLAGS) -c  $< -I srcs
 
 .mli.cmi :
+	@echo "..........compiling headers........"
 	ocamlc -c $< -I srcs
 
 clean : 

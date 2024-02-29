@@ -1,0 +1,7 @@
+# random stuff here, to work with refrence material
+ocamlfind ocamlopt -thread -package core,yojson -I ./refrence -c refrence/refrence.ml && ocamlfind ocamlopt -linkpkg -thread -package core,yojson -o refrence/refrence ./refrence/refrence.cmx
+
+./refrence/refrence machines/unary_addition.json 1+1=
+
+ocamlfind ocamlopt -thread -package core,yojson -I ./refrence -c refrence.ml && ocamlfind ocamlopt -linkpkg -thread -package core,yojson -o refrence ./refrence.cmx && ./refrence ../machines/unary_add/machine.json 1+1=
+1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R| _1+1=

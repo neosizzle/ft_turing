@@ -532,10 +532,19 @@ def find_nchar(len, c, find_dir, next_dir, loop = False):
 # generates the states and transitions for the UTM initialization
 def build_machine_init():
 	actions = [
+		# Empty out all characters until the first pipe
 		blank_until_char(pipe, Action("RIGHT"), True),
+
+		# look for the next pipe
 		find_nchar(1, pipe, Action("RIGHT"), Action("RIGHT")),
+
+		# Blank out all characters until tje next pipe
 		blank_until_char(pipe, Action("RIGHT")),
+
+		# go back and look for the previous pipe
 		find_nchar(2, pipe, Action("LEFT"), Action("LEFT")),
+
+		# store the current read char (should be inputs blank) into the right most side of the blanks
 		join_store(
 			store(
 				sub_alphabet,
@@ -544,11 +553,17 @@ def build_machine_init():
 				Action("LEFT")
 				)
 			),
+
+		# clear out all the remaining characters on the left side
 		blank_until_char(pipe, Action("LEFT"), True),
 		blank_until_char(blank, Action("RIGHT")),
+
+		# find the first pipe and then write another pipe to seperate the first character that we write just now
 		find_nchar(1, pipe, Action("LEFT"), Action("RIGHT")),
 		nmoove(1, Action("LEFT")),
 		arb_write(Action("RIGHT"), pipe),
+		
+		# store the initial state in the register
 		nmoove(2, Action("RIGHT")),
 		join_store(
 			store(
@@ -698,7 +713,18 @@ def test_read_transition(c) :
 
 # find_transition
 # generates states to find the transition given a certain character in the input machine
-# this will generate branches?
+#
+# to execute the states, the tape head should already be in the register.
+# the first thing we do here is read the current symbol in the register and the current state. Both of these information in stored in state memory
+# 
+# then, we will move to the transition space in the tape by moving down 4 pipes
+# At the transition space, we will want to find the transitions that applies to our state. 
+# We will read the current character in the transition space and if it does not match the current state in state memory,
+# we will move 5 chars at a time and repeat the process until we found a match
+#
+# We will scan the next char to determine if the symbol matches the one in state memory.
+# If it does not, we move 3 characters to the right (reach the new state transition) and we loop back to 
+# looking for transitions that applies to our state. If a match is found, execute the next state
 def find_transition() :
 	
 	# hey we have encountered a character in the input tape
@@ -805,6 +831,8 @@ def find_transition() :
 	return res
 
 # moove_fun
+# this will generate states to overwrite the current cursor and shift the position of the cursor
+# depending on state memory
 def moove_fun(c) :
 	res = []
 	# generates states to shift all symbols in this dir until end_char is found
@@ -953,7 +981,14 @@ def moove_fun(c) :
 
 # exec_transition
 # generates states that stores next state in register, stores write char in tape
-# and stores movement of cursor?
+# and stores movement of cursor
+# 
+# to execute the states, we should be at the direction part of a transition
+# first, store the direction and the write character in state memory
+#
+# Move to the part where we store the current state in register and overwrite it with the new state
+#
+# Move to the cursor and write the char and move the cursor one step or either left or write
 def exec_transition():
 	def write_fun(c):
 		return join_states([find_nchar(1, cursor, Action("RIGHT"), Action("RIGHT")), arb_write(Action("LEFT"), c)])
@@ -995,25 +1030,40 @@ def build_machine_exec():
 						Action("RIGHT")
 						)
 				)
+	
+	for step in exec_transition():
+		print(step)
 	actions = [
+		# arbitrary move to 1 step to the right
 		nmoove(1, Action("RIGHT")),
+
+ 		# find the cursor
 		find_nchar(1, cursor, Action("RIGHT"), Action("RIGHT")),
+
+ 		# read the current symbol at the cursor and store at register
 		read_cur,
+
+		# move to the memory where final state is stored and check. If its, should HALT here.
 		is_a_final_state,
+
+		# move to the part where the current character is stored in register
 		find_nchar(4, pipe, Action("LEFT"), Action("LEFT")),
+
+		 # move the head to the correct transition in the transition space
 		find_transition(),
+
+		# we should be at the read_char of the transition, move to the action part
 		nmoove(2, Action("RIGHT")),
+
+		 # Stores information about transition in state memory and updates cursor and register
 		exec_transition(),
+
+		# move the head back to the beginning of the tape and loop
 		find_nchar(1, blank, Action("RIGHT"), Action("LEFT"), loop=True),
 	]
 
-	# for action in actions:
-	# 	for state in action:
-	# 		print(state)
-
-
 	indexed_actions = []
-	index = 35 # TODO: make this global since its hardcoded to fit ref
+	index = 13 # TODO: make this global since its hardcoded to fit ref
 	for action in actions:
 		new_action = []
 		for state in action:
@@ -1058,36 +1108,11 @@ def main(filepath):
 	global output_alphabet
 	output_alphabet = state_range +  sub_alphabet + [cursor, pipe, left_char, right_char, blank]
 
-	# testing
-	l_action = Action("LEFT")
-	r_action = Action("RIGHT")
-	w_write = Write("Write", "some char")
-	c_write = Write("Copy", "")
-	t_to_state = ToState("To_state", "Some to state")
-	s_to_state = ToState("Same", "")
-	n_to_state = ToState("Next", "")
-	l_to_state = ToState("Loop", "")
-	s_transition = Transition("Standart", "read char", t_to_state, w_write, l_action)
-	s_transition_2 = Transition("Standart", "readchar2", s_to_state, c_write, r_action)
-	s_transition_3 = Transition("Standart", "readchar3", n_to_state, c_write, r_action)
-	s_transition_e = Transition("Standart", "readchare", l_to_state, c_write, r_action) 
-	m_transition = Transition("Multiple", ["read char", "m_read"], t_to_state, w_write, l_action) 
-	state_1 = State("state1", [s_transition_3])
-	state_2 = State("state2", [s_transition_e])
-	state_3 = State("state3", [m_transition])
-	states_lst = [state_1, state_1]
-	states_lst_nonext = [state_3, state_2]
-	def c_list(s) :
-		return [State("whattt", [s_transition_2, s_transition_3]), State("howw", [s_transition, s_transition_e])]
-	# res_store = store(["=one", "=two", "=three"], [state_2, state_1, state_3], c_list, l_action)
 	machine_transitions = join_states([build_machine_init(), build_machine_exec()])
 	final_transitions = final_application(machine_transitions, "END")
 	finals = ["END", "HALT", "Sub_undefined"]
 	statenames = list(map(lambda x: x.name, final_transitions)) + finals
 
-	# for state in res:
-	# 	print(state)
-	transitions = [state_1, state_2, state_3]
 	output = Output(
 		"name",
 		output_alphabet,
@@ -1096,9 +1121,7 @@ def main(filepath):
 		statenames[0],
 		finals,
 		final_transitions)
-	print(json.dumps(output.__dict__()))
-	# json.dumps(tmp.__dict__())
-	# pprint(sub_alphabet[0])
+	# print(json.dumps(output.__dict__()))
 
 # Check if the script is run directly
 if __name__ == "__main__":

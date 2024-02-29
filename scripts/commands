@@ -1,6 +1,0 @@
-ocamlfind ocamlopt -thread -package core,yojson -I ./compiler -c compiler/compiler.ml && ocamlfind ocamlopt -linkpkg -thread -package core,yojson -o compiler/compile ./compiler/compiler.cmx
-
-./compiler/compile machines/unary_addition.json 1+1=
-
-ocamlfind ocamlopt -thread -package core,yojson -I ./compiler -c compiler.ml && ocamlfind ocamlopt -linkpkg -thread -package core,yojson -o compile ./compiler.cmx && ./compile ../machines/unary_add/machine.json 1+1=
-1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R| _1+1=
