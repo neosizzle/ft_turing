@@ -24,9 +24,6 @@ class Action:
 	def __str__(self):
 		return f"{self.inner}"
 
-# All states
-states = []
-
 # Write value
 # type - Write (arbitrary string) | Copy (sme with read char in transiton)
 # value - Write's string
@@ -139,12 +136,6 @@ class Output:
 ###     GLOBALS     ###
 #######################
 
-# absfun, an array which stores an array of (state classes)
-absfun = []
-
-# labsfun
-labsfun = []
-
 blank = '~'
 pipe = "|"
 cursor = "_"
@@ -176,13 +167,6 @@ def print_store(res):
 					print(ext_state)
 			print("======================")
 		print("======branch end=====")
-
-# reverses an action value
-def revserse_aaction(action):
-	if action.direction == "LEFT" :
-		action.direction = "RIGHT"
-	else :
-		action.direction = "LEFT"
 
 # apply_absfun
 # also populates transitions with 'multiple' 
@@ -1031,8 +1015,6 @@ def build_machine_exec():
 						)
 				)
 	
-	for step in exec_transition():
-		print(step)
 	actions = [
 		# arbitrary move to 1 step to the right
 		nmoove(1, Action("RIGHT")),
@@ -1121,7 +1103,7 @@ def main(filepath):
 		statenames[0],
 		finals,
 		final_transitions)
-	# print(json.dumps(output.__dict__()))
+	print(json.dumps(output.__dict__()))
 
 # Check if the script is run directly
 if __name__ == "__main__":
