@@ -1031,13 +1031,13 @@ def build_machine_exec():
 		# move to the part where the current character is stored in register
 		find_nchar(4, pipe, Action("LEFT"), Action("LEFT")),
 
-		 # move the head to the correct transition in the transition space
+		# move the head to the correct transition in the transition space
 		find_transition(),
 
 		# we should be at the read_char of the transition, move to the action part
 		nmoove(2, Action("RIGHT")),
 
-		 # Stores information about transition in state memory and updates cursor and register
+		# Stores information about transition in state memory and updates cursor and register
 		exec_transition(),
 
 		# move the head back to the beginning of the tape and loop

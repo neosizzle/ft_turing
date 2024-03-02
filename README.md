@@ -727,7 +727,15 @@ We combine the tape and state manipulation steps earlier to acheive this.
 After initialization, our tape should look like this
 `~~~~~~~~A~|.|A|E|A.A.RA1A1RA+A+RA=B.LB1C=LB+E.LC1C1LC+D1RD1D1RD=E.R|_1+1=`, notice now that the alphabets are removed and replaced with blank `~` characters and the initial state is recorded as well.
 
-> TODO visualization
+![image](https://hackmd.io/_uploads/rykNkze6a.png)
+As we can see, from steps 1 - 3, we are blanking out the characters of the input machine and the states because we dont need to persist those information for execution and we needed space for the tape memory
+
+![image](https://hackmd.io/_uploads/rk3_yflTa.png)
+For steps 4 - 8, we are padding the blank symbol `.` to the right so we get a contigious block of memory.
+
+![image](https://hackmd.io/_uploads/r1RokMlTT.png)
+For steps 9 - 12, we are reading the initial state and recording it in tape memory to begin execution.
+
 
 ## Machine execution
 This will be the Fetch-Decode-Execute cycle for our machine. The steps you can take to acieve this once our machine is initialized are :
@@ -740,4 +748,26 @@ This will be the Fetch-Decode-Execute cycle for our machine. The steps you can t
 6. Before we loop back again, we traverse to the tape memory region where we store the current state and overwrite with the value of `to_state`
 7. Go back to step 1
 
-> TODO visualization
+![image](https://hackmd.io/_uploads/SkYolzgp6.png)
+I couldnt fit the whole sequence in 1 image but as we can see, we are actively trying to find the cursor `_` after our initialization (this is the beginning of the read process)
+
+![image](https://hackmd.io/_uploads/SyH1WzxTp.png)
+The symbol at the right of the cursor is read and saved in state memory; now we are trying to traverse to tape memory region to write the new symbol.
+
+![image](https://hackmd.io/_uploads/rJ2mbzla6.png)
+After we wrote the new symbol in tape memory, we read the current state and test if the state is a final state. Since we can see it is not, we go back to the tape memory region to begin finding the transition (decode process starts here)
+
+![image](https://hackmd.io/_uploads/rJGTZGlTa.png)
+We have recorded the current state and the current symbol in state memory, and now we will be traversing to the tape memory space where the transitions are stored and look for the appropriate transition by matching the current symbol and state. Luckily, its the second transition in the list. We record the action, to_state and write_char values of the transition and store it in state memory
+
+![image](https://hackmd.io/_uploads/SJdQGzxTa.png)
+In this stage, we go back to the tape memory region where the current state is stored and writes the to_state value which was origininally in state memory. We should be writing the write_char after this as we prepare to traverse to the cursor (execute process starts here)
+
+![image](https://hackmd.io/_uploads/SJy9Gzgpp.png)
+Once we are at the cursor, we adjust the cursors position according to the action value in state memory and we also overwrite the character before with write_char, also in state memory.
+
+![image](https://hackmd.io/_uploads/B1xk7fla6.png)
+After that, we will traverse to the leftmost blank character and this process starts all over again.
+
+![image](https://hackmd.io/_uploads/BJTeQfeTp.png)
+Eventually, the rightmost section of the tape (input machines tape) will be mutated according to its behaviour above, the final state gets written to tape memory and the machine will HALT during the decoding phase where the program checks for the final state. 
